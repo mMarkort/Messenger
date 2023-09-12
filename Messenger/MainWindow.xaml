@@ -5,8 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Messenger"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Height="600" Width="700"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"
+        Background="#1F4768">
     <Grid>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
 
+        <Border Grid.ColumnSpan="3" Background="#163148" MouseDown="Border_MouseDown">
+            <Grid>
+                <TextBlock Text="ChatAboba" Foreground="Wheat" FontWeight="Bold"></TextBlock>
+                
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button x:Name="Collapse" Content="-" Width="20" Height="20" Click="Collapse_Click" BorderBrush="Transparent" Foreground="Gray" BorderThickness="0" Background="#163148"/>
+                    <Button x:Name="Expand" Content="O" Width="20" Height="20" Click="Expand_Click" BorderBrush="Transparent" Foreground="Gray" BorderThickness="0" Background="#163148"/>
+                    <Button x:Name="Close" Content="X" Width="20" Click="Close_Click" Height="20" BorderBrush="Transparent" Foreground="Red" BorderThickness="0" Background="#163148"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
+        
     </Grid>
 </Window>

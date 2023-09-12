@@ -24,5 +24,32 @@ namespace Messenger
         {
             InitializeComponent();
         }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed) DragMove();
+        }
+
+        private void Collapse_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
+
+        private void Expand_Click(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.MainWindow.WindowState != WindowState.Maximized)
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+            }
+        }
     }
 }
