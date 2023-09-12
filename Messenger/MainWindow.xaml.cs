@@ -20,14 +20,16 @@ namespace Messenger
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
+            frameMenu.Navigate(new MainPage());
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

@@ -10,23 +10,19 @@
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
-        Background="#1F4768">
+        Background="#1F4768"
+        MinWidth="700"
+        MinHeight="600">
     <Grid>
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Border Grid.ColumnSpan="3" Background="#163148" MouseDown="Border_MouseDown">
+        <Border Background="#163148" MouseDown="Border_MouseDown">
             <Grid>
                 <TextBlock Text="ChatAboba" Foreground="Wheat" FontWeight="Bold"></TextBlock>
-                
+
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                     <Button x:Name="Collapse" Content="-" Width="20" Height="20" Click="Collapse_Click" BorderBrush="Transparent" Foreground="Gray" BorderThickness="0" Background="#163148"/>
                     <Button x:Name="Expand" Content="O" Width="20" Height="20" Click="Expand_Click" BorderBrush="Transparent" Foreground="Gray" BorderThickness="0" Background="#163148"/>
@@ -34,7 +30,7 @@
                 </StackPanel>
             </Grid>
         </Border>
-        
-        
+
+        <Frame x:Name="frameMenu" Grid.Row="1" Height="auto" Width="auto" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
