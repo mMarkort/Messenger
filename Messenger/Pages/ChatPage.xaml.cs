@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Messenger.Pages
+namespace Messenger
 {
     /// <summary>
     /// Interaction logic for ChatPage.xaml
@@ -23,6 +23,11 @@ namespace Messenger.Pages
         public ChatPage()
         {
             InitializeComponent();
+        }
+
+        private void settings_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

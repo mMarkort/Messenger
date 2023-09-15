@@ -1,5 +1,4 @@
-﻿using Messenger.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +30,7 @@ namespace Messenger
         private void loginBut_Click(object sender, RoutedEventArgs e)
         {
             //Когда будет подрублена БД чекать всё
+            mainWindow.frameMenu.Navigate(new ChatPage());
  
         }
 

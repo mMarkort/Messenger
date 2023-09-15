@@ -9,7 +9,6 @@
       Title="AuthPage">
 
     <Grid>
-        <Image Margin="284,160,284,160" Source="/png-transparent-signature-graphology-optima-carne-baldwinsville-text-signature.png" Stretch="Fill"/>
 
     </Grid>
 </Page>
