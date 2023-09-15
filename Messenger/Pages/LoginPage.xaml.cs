@@ -21,7 +21,7 @@ namespace Messenger
     /// </summary>
     public partial class LoginPage : Page
     {
-        MainWindow mainWindow = new MainWindow();
+        MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
 
         public LoginPage()
         {

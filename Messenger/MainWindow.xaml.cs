@@ -20,13 +20,13 @@ namespace Messenger
     /// </summary>
     public partial class MainWindow : Window
     {
-        MainPage mainPage = new MainPage();
-        
+        MainPage mainPage;
         public MainWindow()
         {
             Application.Current.Resources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Styles.xaml") };
             InitializeComponent();
-            frameMenu.Navigate(mainPage);
+            mainPage = new MainPage();
+            frameMenu.Navigate(new MainPage());
 
         }
 
