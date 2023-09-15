@@ -28,11 +28,13 @@ namespace Messenger
             frameLogin.Navigate(loginP);
         }
 
+        //в рамке меняется на логин окно
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             frameLogin.Navigate(loginP);
         }
 
+        //в рамке меняется на окно регистрации
         private void Signin_Click(object sender, RoutedEventArgs e)
         {
             frameLogin.Navigate(authP);

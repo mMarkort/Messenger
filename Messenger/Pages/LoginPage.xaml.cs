@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Messenger.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,35 @@ namespace Messenger
     /// </summary>
     public partial class LoginPage : Page
     {
+        MainWindow mainWindow = new MainWindow();
+
         public LoginPage()
         {
             InitializeComponent();
+        }
+
+        private void loginBut_Click(object sender, RoutedEventArgs e)
+        {
+            //Когда будет подрублена БД чекать всё
+ 
+        }
+
+        //просто когда нажимаешь enter переносит на пароль
+        private void loginText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                passwordText.Focus();
+            }
+        }
+
+        //при enter логинит
+        private void passwordText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                loginBut_Click(sender, e);
+            }
         }
     }
 }
