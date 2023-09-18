@@ -37,6 +37,17 @@
             </ListView>
         </Border>
 
-        <Border Grid.Row="0" Grid.Column="1" Background="#163148"></Border>
+        <Border Grid.RowSpan="2" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Border Background="#163148" Grid.Row="0" Grid.Column="1"></Border>
+            </Grid>
+        </Border>
+
     </Grid>
 </Page>

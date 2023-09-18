@@ -15,18 +15,18 @@
         MinHeight="600">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
         <Border Background="#163148" MouseDown="Border_MouseDown">
             <Grid>
-                <TextBlock Text="ChatAboba" Foreground="Wheat" FontWeight="Bold"></TextBlock>
+                <Label Content="ChatAboba" FontSize="16" FontWeight="Bold"></Label>
 
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                    <Button x:Name="Collapse" Content="-" Width="20" Height="20" Click="Collapse_Click" BorderBrush="Transparent" Foreground="Gray" BorderThickness="0" Background="#163148"/>
-                    <Button x:Name="Expand" Content="O" Width="20" Height="20" Click="Expand_Click" BorderBrush="Transparent" Foreground="Gray" BorderThickness="0" Background="#163148"/>
-                    <Button x:Name="Close" Content="X" Width="20" Click="Close_Click" Height="20" BorderBrush="Transparent" Foreground="Red" BorderThickness="0" Background="#163148"/>
+                    <Button x:Name="Collapse" Content="-" Width="30" Height="30" Click="Collapse_Click" BorderBrush="Transparent" Foreground="Gray" BorderThickness="0" Background="#163148"/>
+                    <Button x:Name="Expand" Content="O" Width="30" Height="30" Click="Expand_Click" BorderBrush="Transparent" Foreground="Gray" BorderThickness="0" Background="#163148"/>
+                    <Button x:Name="Close" Content="X" Width="30" Click="Close_Click" Height="30" BorderBrush="Transparent" Foreground="Red" BorderThickness="0" Background="#163148"/>
                 </StackPanel>
             </Grid>
         </Border>

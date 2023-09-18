@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:Messenger"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AuthPage">
+      Title="AuthPage"
+      Background="#163148">
 
     <Grid>
 

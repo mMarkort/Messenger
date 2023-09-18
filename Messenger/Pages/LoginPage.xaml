@@ -7,13 +7,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LoginPage"
-      Background="#1F4768">
+      Background="#163148">
 
     <Grid>
-        <TextBlock Margin="0,0,0,225" Text="Login" FontSize="22" Foreground="Wheat" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="35"/>
-        <TextBox x:Name="loginText" KeyDown="loginText_KeyDown" Margin="0,0,0,150" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Center" Width="140" Height="35"/>
-        <PasswordBox x:Name="passwordText" KeyDown="passwordText_KeyDown" PasswordChar="•" Margin="0,0,0,0" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="35"/>
-        <TextBlock Margin="0,0,0,75" Text="Password" FontSize="22" Foreground="Wheat" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="35" />
+        <Label Margin="0,0,0,225" Content="Login" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="40"/>
+        <TextBox x:Name="loginText" KeyDown="loginText_KeyDown" Margin="0,0,0,150" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="35" TextChanged="loginText_TextChanged"/>
+        <PasswordBox x:Name="passwordText" KeyDown="passwordText_KeyDown" PasswordChar="•" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="35"/>
+        <Label Margin="0,0,0,75" Content="Password" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="35" />
 
         <Button x:Name="loginBut" Margin="0,100,0,0" Content="Log In" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Click="loginBut_Click" Height="40" Width="120"/>
     </Grid>

@@ -3,6 +3,7 @@
     <!--TEXTBOX-->
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="FontSize" Value="22"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -27,10 +28,43 @@
         </Setter>
     </Style>
     <!--BORDER-->
-    <Style TargetType="{x:Type Border}">
-        <Setter Property="CornerRadius" Value="10,10,10,10"/>
-    </Style>
+
+
     <!--BUTTON-->
-    
-    
+    <Style x:Key="buttons" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Wheat"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="10,10,0,0"
+                            TextBlock.Foreground="{TemplateBinding Foreground}"
+                            BorderThickness="2"
+                            BorderBrush="#163148"
+                            Background="{TemplateBinding Background}">
+                        <Grid>
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#163148"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--LABEL-->
+    <Style TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="Wheat"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
+    </Style>
+
 </ResourceDictionary>

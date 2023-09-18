@@ -21,10 +21,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
-        <Border Grid.Column="1" Grid.Row="1" BorderBrush="#163148" BorderThickness="2" Margin="0,100,0,100">
+        <Border Grid.Column="1" Grid.Row="1" Margin="0,100,0,100">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
@@ -33,10 +33,10 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="Login" Click="Login_Click" Content="Log In" Grid.Column="0" Grid.Row="0" BorderBrush="Transparent" BorderThickness="0" />
-                <Button x:Name="Signin" Click="Signin_Click" Content="Sign In" Grid.Column="1" Grid.Row="0" BorderBrush="Transparent" BorderThickness="0"/>
+                <Button Style="{StaticResource ResourceKey=buttons}" x:Name="Login" Background="#163148" Click="Login_Click" Content="Log In" Grid.Column="0" Grid.Row="0"/>
+                <Button Style="{StaticResource ResourceKey=buttons}" x:Name="Signin" Click="Signin_Click" Content="Sign In" Grid.Column="1" Grid.Row="0"/>
 
-                <Frame x:Name="frameLogin" Height="auto" Width="auto" Grid.Row="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden" />
+                <Frame x:Name="frameLogin" BorderBrush="#163148" BorderThickness="2" Height="auto" Width="auto" Grid.Row="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden" />
 
             </Grid>
         </Border>

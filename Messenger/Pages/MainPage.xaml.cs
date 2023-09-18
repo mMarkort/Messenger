@@ -31,12 +31,16 @@ namespace Messenger
         //в рамке меняется на логин окно
         private void Login_Click(object sender, RoutedEventArgs e)
         {
+            Login.Background = new SolidColorBrush(Color.FromRgb(22, 49, 72));
+            Signin.Background = new SolidColorBrush(Color.FromRgb(31, 71, 104));
             frameLogin.Navigate(loginP);
         }
 
         //в рамке меняется на окно регистрации
         private void Signin_Click(object sender, RoutedEventArgs e)
         {
+            Signin.Background = new SolidColorBrush(Color.FromRgb(22, 49, 72));
+            Login.Background = new SolidColorBrush(Color.FromRgb(31, 71, 104));
             frameLogin.Navigate(authP);
         }
     }

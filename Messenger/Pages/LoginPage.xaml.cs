@@ -30,6 +30,8 @@ namespace Messenger
         private void loginBut_Click(object sender, RoutedEventArgs e)
         {
             //Когда будет подрублена БД чекать всё
+            
+            
             mainWindow.frameMenu.Navigate(new ChatPage());
  
         }
@@ -50,6 +52,11 @@ namespace Messenger
             {
                 loginBut_Click(sender, e);
             }
+        }
+
+        private void loginText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
