@@ -9,10 +9,14 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         AllowsTransparency="True"
-        ResizeMode="CanResizeWithGrip"
+        ResizeMode="CanResize"
         Background="#1F4768"
         MinWidth="700"
         MinHeight="600">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"/>
+    </WindowChrome.WindowChrome>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
@@ -31,6 +35,6 @@
             </Grid>
         </Border>
 
-        <Frame x:Name="frameMenu" Grid.Row="1" Height="auto" Width="auto" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="frameMenu" Grid.Row="1" Height="auto" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

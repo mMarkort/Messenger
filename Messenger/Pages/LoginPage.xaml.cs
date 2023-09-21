@@ -39,6 +39,7 @@ namespace Messenger
         //просто когда нажимаешь enter переносит на пароль
         private void loginText_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (e.Key == Key.Enter)
             {
                 passwordText.Focus();
@@ -54,9 +55,5 @@ namespace Messenger
             }
         }
 
-        private void loginText_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }

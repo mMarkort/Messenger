@@ -24,7 +24,7 @@
         <Border Grid.Column="1" Grid.Row="1" Margin="0,100,0,100">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="35"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 

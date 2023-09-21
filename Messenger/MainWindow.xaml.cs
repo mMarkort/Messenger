@@ -23,7 +23,6 @@ namespace Messenger
         MainPage mainPage;
         public MainWindow()
         {
-            Application.Current.Resources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Styles.xaml") };
             InitializeComponent();
             mainPage = new MainPage();
             frameMenu.Navigate(new MainPage());

@@ -23,6 +23,7 @@ namespace Messenger
         public ChatPage()
         {
             InitializeComponent();
+            
         }
 
         private void settings_Click(object sender, RoutedEventArgs e)

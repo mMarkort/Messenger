@@ -5,14 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Messenger"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="700"
       Title="AuthPage"
       Background="#1F4768">
 
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -20,20 +20,20 @@
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" Grid.Column="0" Background="#163148">
-            <Grid ShowGridLines="True">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" Height="25" Width="175"></TextBox>
-                <Button x:Name="settings" Click="settings_Click" Content="☰" FontSize="20" Foreground="Gray" Background="#163148"></Button>
+                <Button x:Name="settings" Click="settings_Click" Content="☰" FontSize="20" Foreground="LightGray" Background="#163148"></Button>
             </Grid>
         </Border>
 
         <Border Grid.Row="1" Grid.Column="0">
             <ListView Background="#163148">
-                
+
             </ListView>
         </Border>
 
@@ -45,9 +45,23 @@
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
-                <Border Background="#163148" Grid.Row="0" Grid.Column="1"></Border>
+                <Border Background="#163148" Grid.Row="0" Grid.Column="1">
+                    <Grid>
+                        <Label x:Name="MessangerName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Content="@Aboba"/>
+                    </Grid>
+                </Border>
+
+                <StackPanel x:Name="chatBox" Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" MinHeight="50" Width="450">
+                    
+                    <Button Style="{StaticResource buttons2}" Width="50" Content="A"></Button>
+                    <TextBox Style="{StaticResource textBoxes}" x:Name="typingBox" Margin="0,0,0,0" HorizontalAlignment="Stretch" MinWidth="350"></TextBox>
+                    <Button Style="{StaticResource buttons2}" Content="AA" Width="50"></Button>
+                </StackPanel>
+
             </Grid>
         </Border>
+
+
 
     </Grid>
 </Page>
