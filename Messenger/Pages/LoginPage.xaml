@@ -10,10 +10,10 @@
       Background="#163148">
 
     <Grid>
-        <Label Margin="0,0,40,225" Content="Login" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="40"/>
+        <Label Style="{DynamicResource labels}" Margin="0,0,40,225" Content="Login" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="40"/>
         <TextBox Style="{StaticResource ResourceKey=textBoxes}" x:Name="loginText" KeyDown="loginText_KeyDown" Margin="0,0,0,150" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" Height="35"/>
         <PasswordBox Style="{StaticResource ResourceKey=passwordBoxes}" x:Name="passwordText" KeyDown="passwordText_KeyDown" PasswordChar="•" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="180" Height="35"/>
-        <Label Margin="0,0,40,75" Content="Password" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="40" />
+        <Label Style="{DynamicResource labels}" Margin="0,0,40,75" Content="Password" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="40" />
 
         <Button Style="{StaticResource ResourceKey=buttons2}" x:Name="loginBut" Margin="0,100,0,0" Content="Log In" HorizontalAlignment="Center" VerticalAlignment="Center" Click="loginBut_Click" Height="40" Width="120"/>
     </Grid>

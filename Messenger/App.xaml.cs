@@ -14,10 +14,15 @@ namespace Messenger
     /// </summary>
     public partial class App : Application
     {
+        public static ChatPage chatPage;
+        public static AuthPage authPage;
+        public static LoginPage loginPage;
+        public static MainPage mainPage;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             HubConnection connection = new HubConnectionBuilder().WithUrl("http://109.232.111.178:7018/chat").Build();
-
+            
         }
     }
 }

@@ -20,12 +20,12 @@ namespace Messenger
     /// </summary>
     public partial class MainPage : Page
     {
-        public LoginPage loginP = new LoginPage();
-        public AuthPage authP = new AuthPage();
         public MainPage()
         {
             InitializeComponent();
-            frameLogin.Navigate(loginP);
+            App.loginPage = new LoginPage();
+            App.authPage = new AuthPage();
+            frameLogin.Navigate(App.loginPage);
         }
 
         //в рамке меняется на логин окно
@@ -33,7 +33,7 @@ namespace Messenger
         {
             Login.Background = new SolidColorBrush(Color.FromRgb(22, 49, 72));
             Signin.Background = new SolidColorBrush(Color.FromRgb(31, 71, 104));
-            frameLogin.Navigate(loginP);
+            frameLogin.Navigate(App.loginPage);
         }
 
         //в рамке меняется на окно регистрации
@@ -41,7 +41,7 @@ namespace Messenger
         {
             Signin.Background = new SolidColorBrush(Color.FromRgb(22, 49, 72));
             Login.Background = new SolidColorBrush(Color.FromRgb(31, 71, 104));
-            frameLogin.Navigate(authP);
+            frameLogin.Navigate(App.authPage);
         }
     }
 }

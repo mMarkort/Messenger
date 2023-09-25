@@ -20,12 +20,11 @@ namespace Messenger
     /// </summary>
     public partial class MainWindow : Window
     {
-        MainPage mainPage;
         public MainWindow()
         {
             InitializeComponent();
-            mainPage = new MainPage();
-            frameMenu.Navigate(new MainPage());
+            App.mainPage = new MainPage();
+            frameMenu.Navigate(App.mainPage);
 
         }
 

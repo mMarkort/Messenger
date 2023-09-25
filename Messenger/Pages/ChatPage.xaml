@@ -27,13 +27,25 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" Height="25" Width="175"></TextBox>
-                <Button x:Name="settings" Click="settings_Click" Content="☰" FontSize="20" Foreground="LightGray" Background="#163148"></Button>
+                <Button Style="{StaticResource buttons2}" x:Name="settings" Click="settings_Click" Content="☰"></Button>
             </Grid>
         </Border>
 
-        <Border Grid.Row="1" Grid.Column="0">
-            <ListView Background="#163148">
-
+        <Border x:Name="bord" Grid.Row="1" Grid.Column="0" Background="#163148">
+            <ListView x:Name="usersList" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0" ItemsSource="{Binding users}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Style="{DynamicResource stackStyle}" Width="250" Height="50" HorizontalAlignment="Stretch" Orientation="Horizontal">
+                                        <Label x:Name="chats" Style="{DynamicResource ResourceKey=labels}" IsHitTestVisible="False" Content="{Binding UserName}"></Label>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
             </ListView>
         </Border>
 
@@ -42,21 +54,28 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition/>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <Border Background="#163148" Grid.Row="0" Grid.Column="1">
                     <Grid>
-                        <Label x:Name="MessangerName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Content="@Aboba"/>
+                        <Label Style="{DynamicResource ResourceKey=labels}" x:Name="MessangerName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Content="@Aboba"/>
                     </Grid>
                 </Border>
 
-                <StackPanel x:Name="chatBox" Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" MinHeight="50" Width="450">
+
+                <Grid x:Name="chatBox" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" MinHeight="50" Height="auto" MaxHeight="200" MinWidth="450" Background="#163148" Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
                     
-                    <Button Style="{StaticResource buttons2}" Width="50" Content="A"></Button>
-                    <TextBox Style="{StaticResource textBoxes}" x:Name="typingBox" Margin="0,0,0,0" HorizontalAlignment="Stretch" MinWidth="350"></TextBox>
-                    <Button Style="{StaticResource buttons2}" Content="AA" Width="50"></Button>
-                </StackPanel>
+                    <Button Style="{StaticResource chatButtons}" Grid.Column="0" Width="50" HorizontalAlignment="Left" Height="50" VerticalAlignment="Bottom" Click="files_Click" Content="🧷"></Button>
+                    <Label Style="{DynamicResource ResourceKey=labels}" x:Name="placeholder" Margin="0,0,0,0" Grid.Column="1" Height="auto" Content="Write a message..." IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Foreground="Gray"/>
+                    <TextBox Style="{StaticResource chatTextBox}" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,0" x:Name="typingBox" KeyDown="typingBox_KeyDown" MinHeight="50" Height="auto" TextChanged="typingBox_TextChanged" HorizontalAlignment="Stretch"></TextBox>
+                    <Button Style="{StaticResource chatButtons}" Grid.Column="2" Click="send_Click" HorizontalAlignment="Right" Height="50" VerticalAlignment="Bottom" Content="✉" Width="50"></Button>
+                </Grid>
 
             </Grid>
         </Border>

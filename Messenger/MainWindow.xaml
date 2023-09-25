@@ -25,7 +25,7 @@
 
         <Border Background="#163148" MouseDown="Border_MouseDown">
             <Grid>
-                <Label Content="ChatAboba" FontSize="16" FontWeight="Bold"></Label>
+                <Label Style="{DynamicResource ResourceKey=labels}" Foreground="Wheat" Content="ChatAboba" FontSize="16" FontWeight="Bold"></Label>
 
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                     <Button x:Name="Collapse" Content="-" Width="30" Height="30" Click="Collapse_Click" BorderBrush="Transparent" Foreground="Gray" BorderThickness="0" Background="#163148"/>

@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Class="Messenger.Res.CustomEvents">
     <!--TEXTBOX-->
     <Style x:Key="textBoxes" TargetType="{x:Type TextBox}">
         <Setter Property="FontSize" Value="20"/>
@@ -16,6 +17,65 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <!--LISTVIEWHeader-->
+    <Style TargetType="{x:Type GridViewColumnHeader}">
+        <Setter Property="Visibility" Value="Collapsed"/>
+    </Style>
+    
+    <!--LISTVIEWItems-->
+    <Style TargetType="{x:Type ListViewItem}">
+        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_LeftMouseButtonDown"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="0">
+                        <GridViewRowPresenter/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#1a3b57"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#224c70"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    
+    <!--Stack-->
+    <Style x:Key="stackStyle" x:Name="stack" TargetType="{x:Type StackPanel}">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+
+    <!--CHATTEXTBOX-->
+    <Style x:Key="chatTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="LightGray"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="border" CornerRadius="0" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <!--PASSWORDBOX-->
     <Style x:Key="passwordBoxes" TargetType="{x:Type PasswordBox}">
         <Setter Property="FontSize" Value="22"/>
@@ -53,7 +113,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#1F4768"/>
+                            <Setter Property="Foreground" Value="white"/>
                         </Trigger>
 
                     </ControlTemplate.Triggers>
@@ -83,7 +143,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#163148"/>
+                            <Setter Property="Foreground" Value="White"/>
                         </Trigger>
 
                     </ControlTemplate.Triggers>
@@ -92,8 +152,38 @@
         </Setter>
     </Style>
 
+    <!--CHATBUTTONS-->
+    <!--#445a6c-->
+    <Style x:Key="chatButtons" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="LightGray"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="0"
+                            TextBlock.Foreground="{TemplateBinding Foreground}"
+                            BorderThickness="0"
+                            BorderBrush="Transparent"
+                            Background="{TemplateBinding Background}">
+                        <Grid>
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="white"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <!--LABEL-->
-    <Style TargetType="{x:Type Label}">
+    <Style x:Key="labels" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="LightGray"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontSize" Value="22"/>
