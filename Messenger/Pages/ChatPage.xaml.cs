@@ -22,6 +22,7 @@ namespace Messenger
     /// </summary>
     public partial class ChatPage : Page
     {
+
         public class Users {
             public Users(string name) { UserName = name; }
             public string UserName { get; set; }
@@ -29,15 +30,9 @@ namespace Messenger
         public ChatPage()
         {
             InitializeComponent();
-            List<Users> users = new List<Users>();
-            users.Add(new Users("aboba"));
-            users.Add(new Users("aboba1"));
-            users.Add(new Users("aboba2"));
-            users.Add(new Users("aboba3"));
-            Border bor = bord;
-            usersList.ItemsSource = users;
-
+            usersList.ItemsSource = App.users;
         }
+
 
 
         private void settings_Click(object sender, RoutedEventArgs e)

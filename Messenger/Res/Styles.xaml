@@ -25,7 +25,6 @@
     
     <!--LISTVIEWItems-->
     <Style TargetType="{x:Type ListViewItem}">
-        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_LeftMouseButtonDown"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -37,15 +36,18 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="IsSelected" Value="True"/>
                             <Setter Property="Background" Value="#1a3b57"/>
                         </Trigger>
-                        <Trigger Property="IsSelected" Value="True">
+                        <Trigger Property="IsFocused" Value="True">
                             <Setter Property="Background" Value="#224c70"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_LeftMouseButtonDown"/>
+        <EventSetter Event="PreviewMouseRightButtonDown" Handler="ListViewItem_RightMouseButtonDown"/>
     </Style>
 
     <Style TargetType="{x:Type ListBoxItem}">

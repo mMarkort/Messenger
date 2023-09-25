@@ -15,9 +15,20 @@ namespace Messenger.Res
         private void ListViewItem_LeftMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
             var item = sender as ListViewItem;
-            if (item != null)
+            if (item != null && item.IsSelected)
             {
-                App.chatPage.MessangerName.Content = sender.GetType();
+                App.Users id = (App.Users)App.chatPage.usersList.SelectedItem;
+                App.chatPage.MessangerName.Content = id.UserName;
+            }
+        }
+
+        private void ListViewItem_RightMouseButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var item = sender as ListViewItem;
+            if (item != null && item.IsFocused)
+            {
+                App.Users id = (App.Users)App.chatPage.usersList.SelectedItem;
+                App.users.Remove(id);
             }
         }
     }
