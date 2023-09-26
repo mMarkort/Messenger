@@ -27,12 +27,12 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" Height="25" Width="175"></TextBox>
-                <Button Style="{StaticResource buttons2}" x:Name="settings" Click="settings_Click" Content="☰"></Button>
+                <Button Style="{StaticResource chatButtons}" x:Name="settings" Click="settings_Click" Content="☰"></Button>
             </Grid>
         </Border>
 
         <Border x:Name="bord" Grid.Row="1" Grid.Column="0" Background="#163148">
-            <ListView x:Name="usersList" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0" ItemsSource="{Binding users}">
+            <ListView x:Name="usersList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0" ItemsSource="{Binding users}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn>

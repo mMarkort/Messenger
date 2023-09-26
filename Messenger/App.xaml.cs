@@ -24,10 +24,10 @@ namespace Messenger
         }
         
 
-        public static ChatPage chatPage;
-        public static AuthPage authPage;
-        public static LoginPage loginPage;
-        public static MainPage mainPage;
+        public static ChatPage chatPage = new ChatPage();
+        public static AuthPage authPage = new AuthPage();
+        public static LoginPage loginPage = new LoginPage();
+        public static MainPage mainPage = new MainPage();
         public static List<Users> users = new List<Users>();
 
         protected override void OnStartup(StartupEventArgs e)
@@ -37,6 +37,14 @@ namespace Messenger
             users.Add(new Users("aboba1"));
             users.Add(new Users("aboba2"));
             users.Add(new Users("aboba3"));
+            users.Add(new Users("aboba4"));
+            users.Add(new Users("aboba5"));
+            users.Add(new Users("aboba6"));
+            users.Add(new Users("aboba7"));
+            users.Add(new Users("aboba8"));
+            users.Add(new Users("aboba9"));
+            users.Add(new Users("aboba10"));
+            users.Add(new Users("aboba11"));
 
         }
 

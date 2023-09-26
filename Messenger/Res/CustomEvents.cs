@@ -17,7 +17,7 @@ namespace Messenger.Res
             var item = sender as ListViewItem;
             if (item != null && item.IsSelected)
             {
-                App.Users id = (App.Users)App.chatPage.usersList.SelectedItem;
+                var id = (App.Users)App.chatPage.usersList.SelectedItem;
                 App.chatPage.MessangerName.Content = id.UserName;
             }
         }
@@ -25,10 +25,11 @@ namespace Messenger.Res
         private void ListViewItem_RightMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
             var item = sender as ListViewItem;
-            if (item != null && item.IsFocused)
+            if (item != null && item.IsSelected)
             {
-                App.Users id = (App.Users)App.chatPage.usersList.SelectedItem;
-                App.users.Remove(id);
+                //App.Users id = (App.Users)App.chatPage.usersList.SelectedItem;
+                //App.users.Remove(id);
+                MessageBox.Show("aaa");
             }
         }
     }
