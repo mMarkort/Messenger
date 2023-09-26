@@ -30,9 +30,13 @@ namespace Messenger
         private void loginBut_Click(object sender, RoutedEventArgs e)
         {
             //Когда будет подрублена БД чекать всё
-            App.chatPage = new ChatPage();
-            mainWindow.frameMenu.Navigate(App.chatPage);
- 
+            var a = mainWindow.usersTable.Select().AsEnumerable().Where(p => p["Login"].ToString() == loginText.Text && p["Password"].ToString() == passwordText.Password).ToList();
+            if (a.Count > 0)
+            {
+                App.chatPage = new ChatPage();
+                mainWindow.frameMenu.Navigate(App.chatPage);
+            }
+
         }
 
         //просто когда нажимаешь enter переносит на пароль

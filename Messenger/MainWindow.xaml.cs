@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Configuration;
 
 namespace Messenger
 {
@@ -20,12 +23,27 @@ namespace Messenger
     /// </summary>
     public partial class MainWindow : Window
     {
+        string connectionString;
+        SqlDataAdapter adapter;
+        public DataTable usersTable;
         public MainWindow()
         {
             InitializeComponent();
             App.mainPage = new MainPage();
             frameMenu.Navigate(App.mainPage);
 
+            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+            string sql = "SELECT * FROM Users";
+            usersTable = new DataTable();
+            SqlConnection connection = null;
+
+            connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(sql, connection);
+            adapter = new SqlDataAdapter(command);
+
+            connection.Open();
+            adapter.Fill(usersTable);
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
