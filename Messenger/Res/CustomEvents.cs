@@ -17,8 +17,8 @@ namespace Messenger.Res
             var item = sender as ListViewItem;
             if (item != null && item.IsSelected)
             {
-                var id = (App.Users)App.chatPage.usersList.SelectedItem;
-                App.chatPage.MessangerName.Content = id.UserName;
+                //var id = (App.Users)App.chatPage.usersList.SelectedItem;
+                //App.chatPage.MessangerName.Content = id.UserName;
             }
         }
 

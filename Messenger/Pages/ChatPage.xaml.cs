@@ -1,10 +1,12 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,14 +25,10 @@ namespace Messenger
     public partial class ChatPage : Page
     {
 
-        public class Users {
-            public Users(string name) { UserName = name; }
-            public string UserName { get; set; }
-        }
-        public ChatPage()
+        
+        public ChatPage(string UserID)
         {
             InitializeComponent();
-            usersList.ItemsSource = App.users;
         }
 
 

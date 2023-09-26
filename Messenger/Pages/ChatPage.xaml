@@ -32,7 +32,7 @@
         </Border>
 
         <Border x:Name="bord" Grid.Row="1" Grid.Column="0" Background="#163148">
-            <ListView x:Name="usersList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0" ItemsSource="{Binding users}">
+            <ListView x:Name="usersList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn>
@@ -56,6 +56,8 @@
                     <RowDefinition/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
+
+                <Label x:Name="ChatLabel" VerticalContentAlignment="Bottom" Content="" Background="Transparent" Grid.Row="1" FontSize="20" Foreground="LightGray" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" ></Label>
 
                 <Border Background="#163148" Grid.Row="0" Grid.Column="1">
                     <Grid>
