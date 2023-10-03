@@ -90,5 +90,8 @@ namespace Messenger
             App.server.SendCommand.ExecuteAsync(this);
             typingBox.Text = "";
         }
+
+
+
     }
 }
