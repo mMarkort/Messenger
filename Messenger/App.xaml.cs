@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
+﻿using Messenger;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,11 +21,12 @@ namespace Messenger
     {
         public static string connectionString;
         public static SqlDataAdapter adapter;
-        public static SqlDataAdapter chatsAdapter;
+
         public static DataTable usersTable;
-        public static DataTable chatsTable;
+
 
         public static ChatPage chatPage;
+        public static ClientServer server;
         public static AuthPage authPage = new AuthPage();
         public static LoginPage loginPage = new LoginPage();
         public static MainPage mainPage = new MainPage();
@@ -36,20 +38,19 @@ namespace Messenger
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
             string sql = "SELECT * FROM Users";
-            
-            chatsTable = new DataTable();
+
             usersTable = new DataTable();
             SqlConnection connection = null;
 
             connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(sql, connection);
-            SqlCommand getChats = new SqlCommand("SELECT * FROM Chat", connection);
+
             adapter = new SqlDataAdapter(command);
-            chatsAdapter = new SqlDataAdapter(getChats);
+
 
             connection.Open();
             adapter.Fill(usersTable);
-            chatsAdapter.Fill(chatsTable);
+
 
         }
 

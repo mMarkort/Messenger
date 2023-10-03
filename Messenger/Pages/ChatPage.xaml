@@ -8,6 +8,9 @@
       d:DesignHeight="600" d:DesignWidth="700"
       Title="AuthPage"
       Background="#1F4768">
+    <Page.DataContext>
+        <local:ClientServer/>
+    </Page.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -39,7 +42,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Style="{DynamicResource stackStyle}" Width="250" Height="50" HorizontalAlignment="Stretch" Orientation="Horizontal">
-                                        <Label x:Name="chats" Style="{DynamicResource ResourceKey=labels}" IsHitTestVisible="False" Content="{Binding UserName}"></Label>
+                                        <Label x:Name="chats" Style="{DynamicResource ResourceKey=labels}" IsHitTestVisible="False" Content="{Binding ChatName}"></Label>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -76,7 +79,7 @@
                     <Button Style="{StaticResource chatButtons}" Grid.Column="0" Width="50" HorizontalAlignment="Left" Height="50" VerticalAlignment="Bottom" Click="files_Click" Content="🧷"></Button>
                     <Label Style="{DynamicResource ResourceKey=labels}" x:Name="placeholder" Margin="0,0,0,0" Grid.Column="1" Height="auto" Content="Write a message..." IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Foreground="Gray"/>
                     <TextBox Style="{StaticResource chatTextBox}" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,0" x:Name="typingBox" KeyDown="typingBox_KeyDown" MinHeight="50" Height="auto" TextChanged="typingBox_TextChanged" HorizontalAlignment="Stretch"></TextBox>
-                    <Button Style="{StaticResource chatButtons}" Grid.Column="2" Click="send_Click" HorizontalAlignment="Right" Height="50" VerticalAlignment="Bottom" Content="✉" Width="50"></Button>
+                    <Button Style="{StaticResource chatButtons}"  Grid.Column="2" Click="send_Click" HorizontalAlignment="Right" Height="50" VerticalAlignment="Bottom" Content="✉" Width="50"></Button>
                 </Grid>
 
             </Grid>

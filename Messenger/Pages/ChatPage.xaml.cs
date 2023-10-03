@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -24,11 +25,26 @@ namespace Messenger
     /// </summary>
     public partial class ChatPage : Page
     {
+        public static string userID;
+        public static DataTable chatsTable;
+        public static SqlDataAdapter chatsAdapter;
 
-        
         public ChatPage(string UserID)
         {
             InitializeComponent();
+            userID = UserID;
+            SqlConnection connection = null;
+            connection = new SqlConnection(App.connectionString);
+            SqlCommand getChats = new SqlCommand("SELECT Chat.ChatID, Users.UserID,Users.Login FROM Chat join userNchat on userNchat.ChatID = Chat.ChatID join Users on Users.UserID = userNchat.UserID", connection);
+            chatsAdapter = new SqlDataAdapter(getChats);
+            chatsTable = new DataTable();
+            connection.Open();
+            chatsAdapter.Fill(chatsTable);
+
+            var chatsToList = chatsTable.Select().AsEnumerable().Where(p => p["UserID"].ToString() == userID).Select(p => p["ChatID"]).ToList();
+            var opponents = chatsTable.Select().AsEnumerable().Where(p => chatsToList.Contains(p["ChatID"]) && p["UserID"].ToString() != userID).Select(p => new { ChatName = p["Login"] }).ToList();
+
+            usersList.ItemsSource = opponents; 
         }
 
 
@@ -69,7 +85,9 @@ namespace Messenger
 
         private void send_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            App.server.Message = typingBox.Text;
+            App.server.SendCommand.ExecuteAsync(this);
         }
     }
 }
