@@ -60,6 +60,8 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
+                <TextBlock x:Name="chatView" Grid.Row="1" Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
                 <Label x:Name="ChatLabel" VerticalContentAlignment="Bottom" Content="" Background="Transparent" Grid.Row="1" FontSize="20" Foreground="LightGray" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" ></Label>
 
                 <Border Background="#163148" Grid.Row="0" Grid.Column="1">

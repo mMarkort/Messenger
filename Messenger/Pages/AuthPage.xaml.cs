@@ -35,7 +35,7 @@ namespace Messenger
             Regex eng = new Regex(@"^[A-Za-z\d_-]+$");
             var logins = App.usersTable.Select().AsEnumerable().Where(x => x["Login"].ToString() == loginText.Text).ToList();
 
-            if (loginText.Text != "")
+            if (loginText.Text != ""&& !loginText.Text.Contains(" "))
             {
                 if (logins.Count() == 0)
                 {

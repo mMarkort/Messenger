@@ -85,9 +85,10 @@ namespace Messenger
 
         private void send_Click(object sender, RoutedEventArgs e)
         {
-            
+            chatView.Text = App.server.Chat;
             App.server.Message = typingBox.Text;
             App.server.SendCommand.ExecuteAsync(this);
+            typingBox.Text = "";
         }
     }
 }
