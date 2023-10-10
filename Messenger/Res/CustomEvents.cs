@@ -19,6 +19,9 @@ namespace Messenger.Res
             {
                 dynamic a = App.chatPage.usersList.SelectedItem;
                 App.chatPage.MessangerName.Content = a.ChatName.ToString();
+                App.chatPage.messagesView.Visibility = Visibility.Visible;
+                App.chatPage.chatBox.Visibility = Visibility.Visible;
+                App.chatPage.stub.Visibility = Visibility.Collapsed;
             }
         }
 

@@ -26,7 +26,7 @@ namespace Messenger
     public partial class ChatPage : Page
     {
         public static string userID;
-        public static DataTable chatsTable;
+        public DataTable chatsTable;
         public static SqlDataAdapter chatsAdapter;
 
         public ChatPage(string UserID)
@@ -85,10 +85,7 @@ namespace Messenger
 
         private void send_Click(object sender, RoutedEventArgs e)
         {
-            chatView.Text = App.server.Chat;
-            App.server.Message = typingBox.Text;
-            App.server.SendCommand.ExecuteAsync(this);
-            typingBox.Text = "";
+            
         }
 
 

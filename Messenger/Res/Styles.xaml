@@ -18,6 +18,21 @@
         </Setter>
     </Style>
     
+    <!--TextBlockMessages-->
+    <Style x:Key="cloudsForMessages" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="Aquamarine"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+    </Style>
+    
+    <!--TextBlockNames-->
+    <Style x:Key="namesForMessages" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="Orange"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    
     <!--LISTVIEWHeader-->
     <Style TargetType="{x:Type GridViewColumnHeader}">
         <Setter Property="Visibility" Value="Collapsed"/>

@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace Messenger
 {
-    public class ClientServer : ViewModelBase
+    public partial class ClientServer : ViewModelBase
     {
         public string IP { get; set; } = "94.241.175.205";
         public int Port { get; set; } = 5050;

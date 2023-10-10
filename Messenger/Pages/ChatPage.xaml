@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Messenger"
+      xmlns:chats="clr-namespace:Messenger.Chat"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="700"
       Title="AuthPage"
@@ -11,6 +12,7 @@
     <Page.DataContext>
         <local:ClientServer/>
     </Page.DataContext>
+
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,6 +24,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Grid x:Name="stub" Visibility="Visible" Grid.Row="1" Grid.Column="1">
+            <Label Style="{StaticResource labels }" Content="Choose chat to text..." HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"/>
+        </Grid>
+        
         <Border Grid.Row="0" Grid.Column="0" Background="#163148">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -60,18 +66,18 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock x:Name="chatView" Grid.Row="1" Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-
-                <Label x:Name="ChatLabel" VerticalContentAlignment="Bottom" Content="" Background="Transparent" Grid.Row="1" FontSize="20" Foreground="LightGray" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" ></Label>
-
+                <Grid x:Name="messagesView" Visibility="Collapsed" Grid.Row="1" >
+                    <chats:ChatMessages/>
+                </Grid>
+                
                 <Border Background="#163148" Grid.Row="0" Grid.Column="1">
                     <Grid>
-                        <Label Style="{DynamicResource ResourceKey=labels}" x:Name="MessangerName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Content="@Aboba"/>
+                        <Label Style="{DynamicResource ResourceKey=labels}" x:Name="MessangerName" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     </Grid>
                 </Border>
 
 
-                <Grid x:Name="chatBox" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" MinHeight="50" Height="auto" MaxHeight="200" MinWidth="450" Background="#163148" Grid.Row="2">
+                <Grid x:Name="chatBox" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Bottom" MinHeight="50" Height="auto" MaxHeight="200" MinWidth="450" Background="#163148" Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition/>
