@@ -92,9 +92,11 @@ namespace Messenger
                             _writer.WriteLine("auth");
                             _writer.WriteLine($"Login: {Nick}");
                             _writer.WriteLine($"Password: {Password}");
+                            //_writer.WriteLine(Nick);
+                            //_writer.WriteLine(Password);
                             var result = _reader.ReadLine();
                             if (result=="OK") connected= true;
-                            else { MessageBox.Show(result); }
+                            else { MessageBox.Show(result); _client.Close(); }
                         }
                         catch (Exception ex)
                         {
