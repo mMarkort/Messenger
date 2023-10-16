@@ -17,6 +17,12 @@ namespace Messenger
         public string IP { get; set; } = "94.241.175.205";
         public int Port { get; set; } = 5050;
         public string Nick { get; set; } = "";
+
+        public string Password { get; set; } = "";
+
+        public string? publicSeverKey { get; set; } //Публичный ключ сервера для шифрования
+        public string? publicClientKey { get; set; }//Публичный ключ пользователя
+        public string? privateClientKey { get; set; }//Приватный ключ клиента
         public string Chat
         {
             get => GetValue<string>();
@@ -27,6 +33,8 @@ namespace Messenger
         private TcpClient? _client;
         private StreamReader? _reader;
         private StreamWriter? _writer;
+
+        public bool connected = false;
 
         public ClientServer()
         {
@@ -81,8 +89,12 @@ namespace Messenger
                             _writer = new StreamWriter(_client.GetStream());
                             Listener();
                             _writer.AutoFlush = true;
-
+                            _writer.WriteLine("auth");
                             _writer.WriteLine($"Login: {Nick}");
+                            _writer.WriteLine($"Password: {Password}");
+                            var result = _reader.ReadLine();
+                            if (result=="OK") connected= true;
+                            else { MessageBox.Show(result); }
                         }
                         catch (Exception ex)
                         {

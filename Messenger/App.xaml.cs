@@ -35,7 +35,7 @@ namespace Messenger
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            HubConnection connectionSer = new HubConnectionBuilder().WithUrl("http://109.232.111.178:7018/chat").Build();
+            //HubConnection connectionSer = new HubConnectionBuilder().WithUrl("http://109.232.111.178:7018/chat").Build();
 
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
@@ -55,7 +55,7 @@ namespace Messenger
 
 
         }
-
+        
 
 
     }

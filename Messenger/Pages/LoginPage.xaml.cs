@@ -31,16 +31,27 @@ namespace Messenger
         private void loginBut_Click(object sender, RoutedEventArgs e)
         {
             App.server = new ClientServer();
-            //Когда будет подрублена БД чекать всё
-            var a = App.usersTable.Select().AsEnumerable().Where(p => p["Login"].ToString() == loginText.Text && p["Password"].ToString() == passwordText.Password).ToList();
-            if (a.Count > 0)
+            App.server.Nick = loginText.Text;
+            App.server.Password = passwordText.Password;
+            App.server.ConnectCommand.ExecuteAsync(this);
+            if (App.server.connected)
             {
-                App.chatPage = new ChatPage(a.First()["UserID"].ToString());
                 mainWindow.frameMenu.Navigate(App.chatPage);
-                App.server.Nick = a.First()["UserID"].ToString();
-
-                App.server.ConnectCommand.ExecuteAsync(this);
             }
+            else
+            {
+                MessageBox.Show("ERRORE");
+            }
+            //Когда будет подрублена БД чекать всё
+            //var a = App.usersTable.Select().AsEnumerable().Where(p => p["Login"].ToString() == loginText.Text && p["Password"].ToString() == passwordText.Password).ToList();
+            //if (a.Count > 0)
+            //{
+            //    App.chatPage = new ChatPage(a.First()["UserID"].ToString());
+            //    mainWindow.frameMenu.Navigate(App.chatPage);
+            //    App.server.Nick = a.First()["UserID"].ToString();
+
+            //    App.server.ConnectCommand.ExecuteAsync(this);
+            //}
 
         }
 
