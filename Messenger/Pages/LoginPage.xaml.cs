@@ -36,6 +36,7 @@ namespace Messenger
             App.server.ConnectCommand.ExecuteAsync(this);
             if (App.server.connected)
             {
+
                 mainWindow.frameMenu.Navigate(App.chatPage);
             }
             else
