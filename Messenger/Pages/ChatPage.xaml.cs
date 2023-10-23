@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.VisualBasic;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,7 +28,7 @@ namespace Messenger
     {
         public static string userID;
         public DataTable chatsTable;
-        public static SqlDataAdapter chatsAdapter;
+        public static SqlDataAdapter chatsAdapter; 
 
         public ChatPage(string UserID)
         {
@@ -43,8 +44,7 @@ namespace Messenger
 
             var chatsToList = chatsTable.Select().AsEnumerable().Where(p => p["UserID"].ToString() == userID).Select(p => p["ChatID"]).ToList();
             var opponents = chatsTable.Select().AsEnumerable().Where(p => chatsToList.Contains(p["ChatID"]) && p["UserID"].ToString() != userID).Select(p => new { ChatName = p["Login"] }).ToList();
-
-            usersList.ItemsSource = opponents; 
+            usersList.ItemsSource = opponents;
         }
 
 
@@ -85,7 +85,8 @@ namespace Messenger
 
         private void send_Click(object sender, RoutedEventArgs e)
         {
-            
+            App.messages = new Chat.ChatMessages();
+            App.messages.SendMessage();
         }
 
 

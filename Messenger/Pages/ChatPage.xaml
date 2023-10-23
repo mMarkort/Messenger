@@ -9,9 +9,7 @@
       d:DesignHeight="600" d:DesignWidth="700"
       Title="AuthPage"
       Background="#1F4768">
-    <Page.DataContext>
-        <local:ClientServer/>
-    </Page.DataContext>
+
 
 
     <Grid>
@@ -41,7 +39,7 @@
         </Border>
 
         <Border x:Name="bord" Grid.Row="1" Grid.Column="0" Background="#163148">
-            <ListView x:Name="usersList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0">
+            <ListView x:Name="usersList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=opponents}" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn>

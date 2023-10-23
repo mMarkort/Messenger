@@ -8,13 +8,14 @@
              MaxWidth="400">
     <Grid Background="Transparent">
 
-        <Border CornerRadius="10" Padding="8" Background="Aquamarine" >
+        <Border CornerRadius="10" Padding="8" Margin="0,20,0,0" Background="Aquamarine" >
             <Grid>
                 <StackPanel>
                     <TextBlock Text="GGGG" Style="{StaticResource namesForMessages}"/>
                     <TextBlock Style="{StaticResource cloudsForMessages}" TextWrapping="Wrap" Text="abobaabobaabobaabobaabobaabobaabobaabobaabobaaboba" />
                 </StackPanel>
             </Grid>
+            
         </Border>
 
     </Grid>

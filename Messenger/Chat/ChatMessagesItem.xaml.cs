@@ -23,6 +23,8 @@ namespace Messenger.Chat
         public ChatMessagesItem()
         {
             InitializeComponent();
+
+            
         }
     }
 }

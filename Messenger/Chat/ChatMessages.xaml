@@ -6,9 +6,12 @@
              xmlns:local="clr-namespace:Messenger.Chat"
              mc:Ignorable="d" 
              d:DesignHeight="510" d:DesignWidth="450">
+    
+    
+    
     <Grid Background="#1F4768">
         <ScrollViewer VerticalScrollBarVisibility="Visible">
-            <ItemsControl>
+            <ItemsControl HorizontalAlignment="Stretch" Margin="0,0,0,0" x:Name="messages" ItemsSource="{Binding Messages}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <local:ChatMessagesItem/>
@@ -16,5 +19,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
+        
+        
     </Grid>
 </UserControl>

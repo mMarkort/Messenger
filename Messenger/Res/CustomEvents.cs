@@ -18,6 +18,7 @@ namespace Messenger.Res
             if (item != null && item.IsSelected)
             {
                 dynamic a = App.chatPage.usersList.SelectedItem;
+                item.Background = new SolidColorBrush(Color.FromRgb(34, 76, 112));
                 App.chatPage.MessangerName.Content = a.ChatName.ToString();
                 App.chatPage.messagesView.Visibility = Visibility.Visible;
                 App.chatPage.chatBox.Visibility = Visibility.Visible;
