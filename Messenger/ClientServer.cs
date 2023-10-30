@@ -5,15 +5,19 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Messenger
 {
     public partial class ClientServer : ViewModelBase
     {
+        MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
         public string IP { get; set; } = "94.241.175.205";
         public int Port { get; set; } = 5050;
         public string Nick { get; set; } = "";
@@ -38,7 +42,7 @@ namespace Messenger
 
         public ClientServer()
         {
-
+            
         }
 
         private void Listener()
@@ -54,7 +58,7 @@ namespace Messenger
                             var line = _reader?.ReadLine();
                             if (line != null)
                             {
-                                Chat += line + "\n";
+                                Chat=line;
                             }
                             else
                             {
@@ -71,7 +75,7 @@ namespace Messenger
                 }
             });
         }
-        public AsyncCommand ConnectCommand
+        public  AsyncCommand ConnectCommand
         { 
             get
             {
@@ -80,28 +84,40 @@ namespace Messenger
                    
                     return Task.Run(() =>
                     {
-                        try
-                        {
+                        //try
+                        //{
                             
                             _client = new TcpClient();
                             _client.Connect(IP, Port);
                             _reader = new StreamReader(_client.GetStream());
                             _writer = new StreamWriter(_client.GetStream());
-                            Listener();
+                            
                             _writer.AutoFlush = true;
                             _writer.WriteLine("auth");
                             _writer.WriteLine($"Login: {Nick}");
                             _writer.WriteLine($"Password: {Password}");
                             //_writer.WriteLine(Nick);
                             //_writer.WriteLine(Password);
-                            var result = _reader.ReadLine();
-                            if (result=="OK") connected= true;
-                            else { MessageBox.Show(result); _client.Close(); }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
+                            var result =_reader?.ReadLine();
+                                
+                            if (result == "OK")
+                            {
+                            Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                            {
+                                MainWindow mainWindowSus = Application.Current.MainWindow as MainWindow;
+                                connected = true;
+
+                                mainWindowSus.frameMenu.Navigate(App.chatPage);
+                            }));
+
+
+                            }
+                            else { MessageBox.Show(result); }
+                        //}
+                        //catch (Exception ex)
+                        //{
+                        //    MessageBox.Show(ex.Message);
+                        //}
                     });
                 }, () => _client is null || _client?.Connected == false);
             }

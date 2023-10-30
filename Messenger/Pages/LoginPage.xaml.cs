@@ -44,15 +44,15 @@ namespace Messenger
             //    MessageBox.Show("ERRORE");
             //}
             //Когда будет подрублена БД чекать всё
-            var a = App.usersTable.Select().AsEnumerable().Where(p => p["Login"].ToString() == loginText.Text && p["Password"].ToString() == passwordText.Password).ToList();
-            if (a.Count > 0)
-            {
-                App.chatPage = new ChatPage(a.First()["UserID"].ToString());
-                mainWindow.frameMenu.Navigate(App.chatPage);
-                App.server.Nick = a.First()["UserID"].ToString();
+            //var a = App.usersTable.Select().AsEnumerable().Where(p => p["Login"].ToString() == loginText.Text && p["Password"].ToString() == passwordText.Password).ToList();
+            //if (a.Count > 0)
+            //{
+            //    App.chatPage = new ChatPage(a.First()["UserID"].ToString());
+            //    mainWindow.frameMenu.Navigate(App.chatPage);
+            //    App.server.Nick = a.First()["UserID"].ToString();
 
-                App.server.ConnectCommand.ExecuteAsync(this);
-            }
+            //    App.server.ConnectCommand.ExecuteAsync(this);
+            //}
 
         }
 
