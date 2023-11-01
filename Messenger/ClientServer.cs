@@ -99,18 +99,17 @@ namespace Messenger
                             //_writer.WriteLine(Nick);
                             //_writer.WriteLine(Password);
                             var result =_reader?.ReadLine();
-                                
+                            
                             if (result == "OK")
                             {
+                            var usId = _reader?.ReadLine();
                             Application.Current.Dispatcher.BeginInvoke((Action)(() =>
                             {
                                 MainWindow mainWindowSus = Application.Current.MainWindow as MainWindow;
                                 connected = true;
-
+                                App.chatPage = new ChatPage(usId);
                                 mainWindowSus.frameMenu.Navigate(App.chatPage);
                             }));
-
-
                             }
                             else { MessageBox.Show(result); }
                         //}
