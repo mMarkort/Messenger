@@ -28,7 +28,8 @@ namespace Messenger
     {
         public static string userID;
         public DataTable chatsTable;
-        public static SqlDataAdapter chatsAdapter; 
+        public static SqlDataAdapter chatsAdapter;
+        public static bool clicked = false;
 
         public ChatPage(string UserID)
         {
@@ -51,7 +52,22 @@ namespace Messenger
 
         private void settings_Click(object sender, RoutedEventArgs e)
         {
-            
+            App.settingsPage = new SettingsPage();
+
+            if (!clicked)
+            {
+                settingsFrame.Visibility = Visibility.Visible;
+                bord.Visibility = Visibility.Collapsed;
+                settingsFrame.Navigate(new SettingsPage());
+                clicked = true;
+            }
+            else if (clicked)
+            {
+                settingsFrame.Visibility = Visibility.Collapsed;
+                bord.Visibility = Visibility.Visible;
+                clicked = false;
+            }
+
         }
 
 

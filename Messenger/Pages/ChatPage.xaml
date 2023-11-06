@@ -14,7 +14,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="stub" Visibility="Visible" Grid.Row="1" Grid.Column="1">
-            <Label Style="{StaticResource labels }" Content="Choose chat to text..." HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"/>
+            <Label Style="{StaticResource labels }" Content="{DynamicResource ChooseChat}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"/>
         </Grid>
         
         <Border Grid.Row="0" Grid.Column="0" Background="#163148">
@@ -38,7 +38,8 @@
             </Grid>
         </Border>
 
-        <Border x:Name="bord" Grid.Row="1" Grid.Column="0" Background="#163148">
+        <Frame x:Name="settingsFrame" Grid.Column="0" Grid.Row="1" NavigationUIVisibility="Hidden" Visibility="Collapsed"></Frame>
+        <Border x:Name="bord" Grid.Row="1" Grid.Column="0" Background="#163148" Visibility="Visible">
             <ListView x:Name="usersList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=opponents}" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0">
                 <ListView.View>
                     <GridView>
@@ -83,7 +84,7 @@
                     </Grid.ColumnDefinitions>
                     
                     <Button Style="{StaticResource chatButtons}" Grid.Column="0" Width="50" HorizontalAlignment="Left" Height="50" VerticalAlignment="Bottom" Click="files_Click" Content="🧷"></Button>
-                    <Label Style="{DynamicResource ResourceKey=labels}" x:Name="placeholder" Margin="0,0,0,0" Grid.Column="1" Height="auto" Content="Write a message..." IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Foreground="Gray"/>
+                    <Label Style="{DynamicResource ResourceKey=labels}" x:Name="placeholder" Margin="0,0,0,0" Grid.Column="1" Height="auto" Content="{DynamicResource WriteAMessage}" IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Foreground="Gray"/>
                     <TextBox Style="{StaticResource chatTextBox}" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,0" x:Name="typingBox" KeyDown="typingBox_KeyDown" MinHeight="50" Height="auto" TextChanged="typingBox_TextChanged" HorizontalAlignment="Stretch"></TextBox>
                     <Button Style="{StaticResource chatButtons}"  Grid.Column="2" Click="send_Click" HorizontalAlignment="Right" Height="50" VerticalAlignment="Bottom" Content="✉" Width="50"></Button>
                 </Grid>

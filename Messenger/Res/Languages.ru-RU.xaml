@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="LogIn">Вход</system:String>
+    <system:String x:Key="SignIn">Регистрация</system:String>
+    <system:String x:Key="Login">Логин</system:String>
+    <system:String x:Key="Password">Пароль</system:String>
+    <system:String x:Key="MyAccount">👤 Аккаунт</system:String>
+    <system:String x:Key="Language">🈂️ Язык</system:String>
+    <system:String x:Key="LogOut">🚪 Выход</system:String>
+    <system:String x:Key="ChooseChat">Выберите чат...</system:String>
+    <system:String x:Key="WriteAMessage">Наберите сообщение...</system:String>
+    <system:String x:Key="ReEnter">Повторите пароль</system:String>
+</ResourceDictionary>
