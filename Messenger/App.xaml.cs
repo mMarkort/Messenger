@@ -28,6 +28,7 @@ namespace Messenger
         public static SqlDataAdapter adapter;
         public static string selectedFilePath;
         public static int languageSelect;
+        public static string userID;
 
         public static DataTable usersTable;
 
@@ -45,7 +46,7 @@ namespace Messenger
         {
             //HubConnection connectionSer = new HubConnectionBuilder().WithUrl("http://109.232.111.178:7018/chat").Build();
 
-            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            connectionString = "Data Source=94.241.175.205,1433;Initial Catalog=Messenger;Integrated Security=False;User Id=SA;Password=TheB3stPassw0rdF0rDB;";
 
             string sql = "SELECT * FROM Users";
 

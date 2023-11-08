@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using Messenger.Models;
+using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -26,26 +27,15 @@ namespace Messenger
     /// </summary>
     public partial class ChatPage : Page
     {
-        public static string userID;
-        public DataTable chatsTable;
-        public static SqlDataAdapter chatsAdapter;
+        public string userID;
         public static bool clicked = false;
 
         public ChatPage(string UserID)
         {
-            InitializeComponent();
             userID = UserID;
-            SqlConnection connection = null;
-            connection = new SqlConnection(App.connectionString);
-            SqlCommand getChats = new SqlCommand("SELECT Chat.ChatID, Users.UserID,Users.Login FROM Chat join userNchat on userNchat.ChatID = Chat.ChatID join Users on Users.UserID = userNchat.UserID", connection);
-            chatsAdapter = new SqlDataAdapter(getChats);
-            chatsTable = new DataTable();
-            connection.Open();
-            chatsAdapter.Fill(chatsTable);
-
-            var chatsToList = chatsTable.Select().AsEnumerable().Where(p => p["UserID"].ToString() == userID).Select(p => p["ChatID"]).ToList();
-            var opponents = chatsTable.Select().AsEnumerable().Where(p => chatsToList.Contains(p["ChatID"]) && p["UserID"].ToString() != userID).Select(p => new { ChatName = p["Login"] }).ToList();
-            usersList.ItemsSource = opponents;
+            App.userID = UserID;
+            InitializeComponent();
+            
         }
 
 
@@ -71,18 +61,6 @@ namespace Messenger
         }
 
 
-        private void typingBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (typingBox.Text == "" )
-            {
-                placeholder.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                placeholder.Visibility =Visibility.Hidden;
-            }
-
-        }
 
         private void files_Click(object sender, RoutedEventArgs e)
         {
@@ -101,8 +79,8 @@ namespace Messenger
 
         private void send_Click(object sender, RoutedEventArgs e)
         {
-            App.messages = new Chat.ChatMessages();
-            App.messages.SendMessage();
+            Messenger.Models.ViewModel viewModel = new Messenger.Models.ViewModel();
+            viewModel.SendMessage(typingBox.Text);
         }
 
 

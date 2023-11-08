@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Messenger"
+        xmlns:local="clr-namespace:Messenger" xmlns:models="clr-namespace:Messenger.Models"
         mc:Ignorable="d"
         Height="600" Width="700"
         WindowStartupLocation="CenterScreen"
@@ -13,6 +13,9 @@
         Background="#1F4768"
         MinWidth="700"
         MinHeight="600">
+    <Window.DataContext>
+        <models:ViewModel/>
+    </Window.DataContext>
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"/>

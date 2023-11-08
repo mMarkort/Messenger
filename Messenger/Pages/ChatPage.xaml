@@ -4,12 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Messenger"
-      xmlns:chats="clr-namespace:Messenger.Chat"
+      xmlns:chats="clr-namespace:Messenger.Chat" xmlns:models="clr-namespace:Messenger.Models"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="700"
       Title="AuthPage"
       Background="#1F4768">
-
+    <Page.DataContext>
+        <models:ViewModel/>
+    </Page.DataContext>
 
 
     <Grid>
@@ -40,14 +42,14 @@
 
         <Frame x:Name="settingsFrame" Grid.Column="0" Grid.Row="1" NavigationUIVisibility="Hidden" Visibility="Collapsed"></Frame>
         <Border x:Name="bord" Grid.Row="1" Grid.Column="0" Background="#163148" Visibility="Visible">
-            <ListView x:Name="usersList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Path=opponents}" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0">
+            <ListView x:Name="usersList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Users}" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Style="{DynamicResource stackStyle}" Width="250" Height="50" HorizontalAlignment="Stretch" Orientation="Horizontal">
-                                        <Label x:Name="chats" Style="{DynamicResource ResourceKey=labels}" IsHitTestVisible="False" Content="{Binding ChatName}"></Label>
+                                        <Label x:Name="chats" Style="{DynamicResource ResourceKey=labels}" IsHitTestVisible="False" Content="{Binding UserName}"></Label>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -66,7 +68,26 @@
                 </Grid.RowDefinitions>
 
                 <Grid x:Name="messagesView" Visibility="Collapsed" Grid.Row="1" >
-                    <chats:ChatMessages/>
+                    <ListView x:Name="messagesList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Messages}" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Border CornerRadius="10" Padding="8" Margin="0,20,0,0" Background="Aquamarine" >
+                                                <Grid>
+                                                    <StackPanel>
+                                                        <TextBlock Text="GGGG" Style="{StaticResource namesForMessages}"/>
+                                                        <TextBlock Style="{StaticResource cloudsForMessages}" TextWrapping="Wrap" Text="{Binding Message}" />
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
                 
                 <Border Background="#163148" Grid.Row="0" Grid.Column="1">
@@ -76,7 +97,7 @@
                 </Border>
 
 
-                <Grid x:Name="chatBox" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Bottom" MinHeight="50" Height="auto" MaxHeight="200" MinWidth="450" Background="#163148" Grid.Row="2">
+                <Grid x:Name="chatBox" HorizontalAlignment="Stretch" Visibility="Visible" VerticalAlignment="Bottom" MinHeight="50" Height="auto" MaxHeight="200" MinWidth="400" Background="#163148" Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition/>
@@ -84,8 +105,7 @@
                     </Grid.ColumnDefinitions>
                     
                     <Button Style="{StaticResource chatButtons}" Grid.Column="0" Width="50" HorizontalAlignment="Left" Height="50" VerticalAlignment="Bottom" Click="files_Click" Content="🧷"></Button>
-                    <Label Style="{DynamicResource ResourceKey=labels}" x:Name="placeholder" Margin="0,0,0,0" Grid.Column="1" Height="auto" Content="{DynamicResource WriteAMessage}" IsHitTestVisible="False" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Foreground="Gray"/>
-                    <TextBox Style="{StaticResource chatTextBox}" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,0" x:Name="typingBox" KeyDown="typingBox_KeyDown" MinHeight="50" Height="auto" TextChanged="typingBox_TextChanged" HorizontalAlignment="Stretch"></TextBox>
+                    <TextBox Style="{StaticResource chatTextBox}" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,0" x:Name="typingBox" KeyDown="typingBox_KeyDown" MinHeight="50" Height="auto" HorizontalAlignment="Stretch"></TextBox>
                     <Button Style="{StaticResource chatButtons}"  Grid.Column="2" Click="send_Click" HorizontalAlignment="Right" Height="50" VerticalAlignment="Bottom" Content="✉" Width="50"></Button>
                 </Grid>
 

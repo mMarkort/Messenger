@@ -85,13 +85,44 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border x:Name="border" CornerRadius="0" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
-                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                    <Border CornerRadius="0" Background="Transparent">
+                        <Grid>
+                            <TextBox VerticalAlignment="Stretch" VerticalContentAlignment="Center"
+                                     HorizontalAlignment="Stretch"
+                                     x:Name="MessageBox"
+                                     Background="Transparent"
+                                     TextWrapping="Wrap"
+                                     BorderThickness="0"
+                                     Foreground="LightGray"
+                                     Text="{Binding MessageText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <TextBox.InputBindings>
+                                    <KeyBinding Command="{Binding SendCommand}" Key="Return"/>
+                                </TextBox.InputBindings>
+
+                            </TextBox>
+
+                            <Label IsHitTestVisible="False"
+                                   Content="{DynamicResource WriteAMessage}"
+                                   VerticalAlignment="Center" HorizontalAlignment="Left"
+                                   Foreground="DarkGray">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=MessageBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+    
     
     <!--PASSWORDBOX-->
     <Style x:Key="passwordBoxes" TargetType="{x:Type PasswordBox}">

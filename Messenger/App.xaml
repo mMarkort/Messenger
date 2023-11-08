@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Res/Styles.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Res/Languages.en-US.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Res/ChatBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
