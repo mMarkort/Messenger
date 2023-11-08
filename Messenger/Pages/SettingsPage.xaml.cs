@@ -71,9 +71,15 @@ namespace Messenger
         {
             ImageBrush brush = new ImageBrush();
 
-            imageBytes = Convert.FromBase64String(ComputeHash(App.selectedFilePath));
+            var ConvertedImage = ComputeHash(App.selectedFilePath);
 
+            imageBytes = Convert.FromBase64String(ConvertedImage);
 
+            App.server.AvatarString = ConvertedImage;
+
+            Task.Run(async()=>App.server.ChangeAvatar.Execute(this)).Wait();
+            MessageBox.Show("b");
+            //App.server.ChangeAvatar.ExecuteAsync(this).Wait();
             // Create a BitmapImage from the byte array
             BitmapImage image2 = new BitmapImage();
             using (MemoryStream memoryStream = new MemoryStream(imageBytes))

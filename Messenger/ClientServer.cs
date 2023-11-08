@@ -21,7 +21,8 @@ namespace Messenger
         public string IP { get; set; } = "94.241.175.205";
         public int Port { get; set; } = 5050;
         public string Nick { get; set; } = "";
-
+        public bool Status { get; set; } = true;
+        public string AvatarString { get; set; } = "";
         public string Password { get; set; } = "";
 
         public string? publicSeverKey { get; set; } //Публичный ключ сервера для шифрования
@@ -102,14 +103,14 @@ namespace Messenger
                             
                             if (result == "OK")
                             {
-                            var usId = _reader?.ReadLine();
-                            Application.Current.Dispatcher.BeginInvoke((Action)(() =>
-                            {
-                                MainWindow mainWindowSus = Application.Current.MainWindow as MainWindow;
-                                connected = true;
-                                App.chatPage = new ChatPage(usId);
-                                mainWindowSus.frameMenu.Navigate(App.chatPage);
-                            }));
+                                var usId = _reader?.ReadLine();
+                                Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                                {
+                                    MainWindow mainWindowSus = Application.Current.MainWindow as MainWindow;
+                                    connected = true;
+                                    App.chatPage = new ChatPage(usId);
+                                    mainWindowSus.frameMenu.Navigate(App.chatPage);
+                                }));
                             }
                             else { MessageBox.Show(result); }
                         //}
@@ -134,6 +135,21 @@ namespace Messenger
                         Message = "";
                     });
                 }, () => _client?.Connected == true, !string.IsNullOrWhiteSpace(Message));
+            }
+        }
+        public AsyncCommand ChangeAvatar
+        {
+            get
+            {
+                return new AsyncCommand(() =>
+                {
+                    return Task.Run(() =>
+                    {
+                        MessageBox.Show("a");
+                        _writer?.WriteLine("ChangeAvatar");
+                        _writer?.WriteLine(AvatarString);
+                    });
+                },() => _client?.Connected == true);
             }
         }
     }
