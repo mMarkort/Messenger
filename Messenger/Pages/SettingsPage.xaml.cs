@@ -32,6 +32,24 @@ namespace Messenger
             InitializeComponent();
             App.save = new SaveData();
             LanguageChoose.SelectedIndex = App.save.LoadData().Language;
+
+            if (!String.IsNullOrEmpty(App.server.AvatarString))
+            {
+                ImageBrush brush = new ImageBrush();
+                imageBytes = Convert.FromBase64String(App.server.AvatarString);
+                BitmapImage image2 = new BitmapImage();
+                using (MemoryStream memoryStream = new MemoryStream(imageBytes))
+                {
+                    image2.BeginInit();
+                    image2.CacheOption = BitmapCacheOption.OnLoad;
+                    image2.StreamSource = memoryStream;
+                    image2.EndInit();
+                }
+
+                brush.ImageSource = image2;
+                imageCircle.Fill = brush;
+            }
+            
         }
 
         private void logout_Click(object sender, RoutedEventArgs e)
@@ -78,7 +96,6 @@ namespace Messenger
             App.server.AvatarString = ConvertedImage;
 
             Task.Run(async()=>App.server.ChangeAvatar.Execute(this)).Wait();
-            MessageBox.Show("b");
             //App.server.ChangeAvatar.ExecuteAsync(this).Wait();
             // Create a BitmapImage from the byte array
             BitmapImage image2 = new BitmapImage();

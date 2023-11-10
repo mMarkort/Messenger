@@ -104,6 +104,11 @@ namespace Messenger
                             if (result == "OK")
                             {
                                 var usId = _reader?.ReadLine();
+                                
+                                var IsAvatar = _reader?.ReadLine()=="true";
+                                if(IsAvatar){
+                                    AvatarString=_reader?.ReadLine();
+                                }
                                 Application.Current.Dispatcher.BeginInvoke((Action)(() =>
                                 {
                                     MainWindow mainWindowSus = Application.Current.MainWindow as MainWindow;
@@ -111,6 +116,8 @@ namespace Messenger
                                     App.chatPage = new ChatPage(usId);
                                     mainWindowSus.frameMenu.Navigate(App.chatPage);
                                 }));
+
+
                             }
                             else { MessageBox.Show(result); }
                         //}
