@@ -79,8 +79,7 @@ namespace Messenger
 
         private void send_Click(object sender, RoutedEventArgs e)
         {
-            Messenger.Models.ViewModel viewModel = new Messenger.Models.ViewModel();
-            viewModel.SendMessage(typingBox.Text);
+
         }
 
 

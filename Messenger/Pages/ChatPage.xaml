@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Messenger"
-      xmlns:chats="clr-namespace:Messenger.Chat" xmlns:models="clr-namespace:Messenger.Models"
+      xmlns:models="clr-namespace:Messenger.Models"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="700"
       Title="AuthPage"
@@ -97,7 +97,7 @@
                 </Border>
 
 
-                <Grid x:Name="chatBox" HorizontalAlignment="Stretch" Visibility="Visible" VerticalAlignment="Bottom" MinHeight="50" Height="auto" MaxHeight="200" MinWidth="400" Background="#163148" Grid.Row="2">
+                <Grid x:Name="chatBox" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Bottom" MinHeight="50" Height="auto" MaxHeight="200" MinWidth="400" Background="#163148" Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition/>

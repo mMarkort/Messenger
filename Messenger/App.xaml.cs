@@ -1,5 +1,4 @@
 ﻿using Messenger;
-using Messenger.Chat;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
@@ -34,7 +33,6 @@ namespace Messenger
 
         public static ChatPage chatPage;
         public static ClientServer server;
-        public static ChatMessages messages;
         public static SaveData save;
         public static SettingsPage settingsPage;
         public static AuthPage authPage = new AuthPage();

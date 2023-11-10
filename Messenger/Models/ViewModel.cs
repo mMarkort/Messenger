@@ -6,7 +6,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Messenger.Chat;
 using System.Windows;
 
 namespace Messenger.Models
@@ -46,10 +45,10 @@ namespace Messenger.Models
                 {
                     Message = MessageText,
                 });
-                MessageBox.Show(MessageText);
                 MessageText = "";
+                App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
             });
-
+            
 
             SqlConnection connection = null;
             connection = new SqlConnection(App.connectionString);
@@ -70,20 +69,8 @@ namespace Messenger.Models
                 });
             }
 
-            for (int i = 0; i < 3; i++)
-            {
-                Messages.Add(new MessageModel
-                {
-                    Message = "dwadawdawd"
-                });
-            }
 
         }
 
-        public void SendMessage(string text)
-        {
-            Messages.Add(new MessageModel { Message = text });
-            MessageBox.Show(Messages.Count().ToString());
-        }
     }
 }
