@@ -18,8 +18,13 @@ namespace Messenger.Res
             if (item != null && item.IsSelected)
             {
                 dynamic a = App.chatPage.usersList.SelectedItem;
+
+                App.server.ChatID = Convert.ToInt32(a.ChatID);
+
+                Task.Run(async () => App.server.GetMessages.Execute(this)).Wait();
+
                 item.Background = new SolidColorBrush(Color.FromRgb(34, 76, 112));
-                App.chatPage.MessangerName.Content = a.UserName.ToString();
+                App.chatPage.MessangerName.Content = a.ChatName.ToString();
                 App.chatPage.messagesView.Visibility = Visibility.Visible;
                 App.chatPage.chatBox.Visibility = Visibility.Visible;
                 App.chatPage.stub.Visibility = Visibility.Collapsed;

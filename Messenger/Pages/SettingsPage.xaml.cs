@@ -32,7 +32,6 @@ namespace Messenger
             InitializeComponent();
             App.save = new SaveData();
             LanguageChoose.SelectedIndex = App.save.LoadData().Language;
-
             if (!String.IsNullOrEmpty(App.server.AvatarString))
             {
                 ImageBrush brush = new ImageBrush();

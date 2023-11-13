@@ -41,36 +41,65 @@ namespace Messenger.Models
 
             SendCommand = new RelayCommand(o => 
             {
-                Messages.Add(new MessageModel
-                {
-                    Message = MessageText,
-                });
-                MessageText = "";
-                App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
+                this.AddMessage();
+                //Messages.Add(new MessageModel
+                //{
+                //    Message = MessageText,
+                //    MessageAutor = App.server.Nick
+                //});
+                //MessageText = "";
+                //App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
             });
             
 
-            SqlConnection connection = null;
-            connection = new SqlConnection(App.connectionString);
-            SqlCommand getChats = new SqlCommand("SELECT Chat.ChatID, Users.UserID,Users.Login FROM Chat join userNchat on userNchat.ChatID = Chat.ChatID join Users on Users.UserID = userNchat.UserID", connection);
-            chatsAdapter = new SqlDataAdapter(getChats);
-            chatsTable = new DataTable();
-            connection.Open();
-            chatsAdapter.Fill(chatsTable);
+            //SqlConnection connection = null;
+            //connection = new SqlConnection(App.connectionString);
+            //SqlCommand getChats = new SqlCommand("SELECT Chat.ChatID, Users.UserID,Users.Login FROM Chat join userNchat on userNchat.ChatID = Chat.ChatID join Users on Users.UserID = userNchat.UserID", connection);
+            //chatsAdapter = new SqlDataAdapter(getChats);
+            //chatsTable = new DataTable();
+            //connection.Open();
+            //chatsAdapter.Fill(chatsTable);
 
-            var chatsToList = chatsTable.Select().AsEnumerable().Where(p => p["UserID"].ToString() == App.userID).Select(p => p["ChatID"]).ToList();
-            var opponents = chatsTable.Select().AsEnumerable().Where(p => chatsToList.Contains(p["ChatID"]) && p["UserID"].ToString() != App.userID).Select(p => new { ChatName = p["Login"] }).ToList();
+            //var chatsToList = chatsTable.Select().AsEnumerable().Where(p => p["UserID"].ToString() == App.userID).Select(p => p["ChatID"]).ToList();
+            //var opponents = chatsTable.Select().AsEnumerable().Where(p => chatsToList.Contains(p["ChatID"]) && p["UserID"].ToString() != App.userID).Select(p => new { ChatName = p["Login"] }).ToList();
             
-            foreach ( var opponent in opponents)
-            {
-                Users.Add(new UserListModel
-                {
-                    UserName = opponent.ChatName.ToString()
-                });
-            }
+            //foreach ( var opponent in opponents)
+            //{
+            //    Users.Add(new UserListModel
+            //    {
+            //        ChatName = opponent.ChatName.ToString()
+            //    });
+            //}
 
 
         }
-
+        public void AddChatList(List<Dictionary<string, string>> chats)
+        {
+            foreach (var item in chats)
+            {
+                int a = String.IsNullOrEmpty(item["UnReMessage"]) ? 0 : Convert.ToInt32(item["UnReMessage"]);
+                Users.Add(new UserListModel { ChatName = item["ChatName"], unrMessages=a ,ChatID= item["ChatID"] });
+            }
+        }
+        public void AddMessageList(List<Dictionary<string, string>> msgs)
+        {
+            foreach (var item in msgs)
+            {
+                int chatID = Convert.ToInt32(item["chatID"]);
+                DateTime datettme;
+                DateTime.TryParse(item["datetime"], out datettme);
+                Messages.Add(new MessageModel { ChatID = chatID, dateTime = datettme, Message = item["msgCont"], MessageAutor = item["login"] });
+            }
+        }
+        public void AddMessage()
+        {
+            Messages.Add(new MessageModel
+            {
+                Message = MessageText,
+                MessageAutor = App.server.Nick
+            });
+            MessageText = "";
+            App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
+        }
     }
 }
