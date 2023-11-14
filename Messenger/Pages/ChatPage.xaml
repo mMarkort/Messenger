@@ -68,16 +68,16 @@
                 </Grid.RowDefinitions>
 
                 <Grid x:Name="messagesView" Visibility="Collapsed" Grid.Row="1" >
-                    <ListView x:Name="messagesList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Messages}" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0">
+                    <ListView x:Name="messagesList" Focusable="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Messages}" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn>
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Border CornerRadius="10" Padding="8" Margin="0,20,0,0" Width="auto"  MaxWidth="300" Background="Aquamarine" >
+                                            <Border CornerRadius="10" Padding="8" Margin="0,20,0,0" MinWidth="300"  MaxWidth="300" Background="Aquamarine" >
                                                 <StackPanel>
-                                                    <TextBlock Text="{Binding MessageAutor}" Style="{StaticResource namesForMessages}"/>
-                                                    <TextBlock x:Name="MessTextBlock" Style="{StaticResource cloudsForMessages}"  TextWrapping="Wrap" Text="{Binding Message}" />
+                                                    <TextBox Text="{Binding MessageAutor}" IsReadOnly="True" Style="{StaticResource namesForMessages}"/>
+                                                    <TextBox x:Name="MessTextBlock" IsReadOnly="True" Style="{StaticResource cloudsForMessages}"  TextWrapping="Wrap" Text="{Binding Message}" />
                                                 </StackPanel>
                                             </Border>
                                         </DataTemplate>
@@ -97,14 +97,14 @@
 
                 <Grid x:Name="chatBox" HorizontalAlignment="Stretch" Visibility="Collapsed" VerticalAlignment="Bottom" MinHeight="50" Height="auto" MaxHeight="200" MinWidth="400" Background="#163148" Grid.Row="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50"/>
+                        <!--<ColumnDefinition Width="50"/>-->
                         <ColumnDefinition/>
                         <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
                     
-                    <Button Style="{StaticResource chatButtons}" Grid.Column="0" Width="50" HorizontalAlignment="Left" Height="50" VerticalAlignment="Bottom" Click="files_Click" Content="🧷"></Button>
-                    <TextBox Style="{StaticResource chatTextBox}" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,0" x:Name="typingBox" KeyDown="typingBox_KeyDown" MinHeight="50" Height="auto" HorizontalAlignment="Stretch"></TextBox>
-                    <Button Style="{StaticResource chatButtons}"  Grid.Column="2" Click="send_Click" HorizontalAlignment="Right" Height="50" VerticalAlignment="Bottom" Content="✉" Width="50"></Button>
+                    <!--<Button Style="{StaticResource chatButtons}" Grid.Column="0" Width="50" HorizontalAlignment="Left" Height="50" VerticalAlignment="Bottom" Click="files_Click" Content="🧷"></Button>-->
+                    <TextBox Style="{StaticResource chatTextBox}" Grid.Column="0" TextWrapping="Wrap" Margin="0,0,0,0" x:Name="typingBox" MinHeight="50" Height="auto" HorizontalAlignment="Stretch"></TextBox>
+                    <Button Style="{StaticResource chatButtons}"  Grid.Column="1" Command="{Binding SendCommand}" HorizontalAlignment="Right" Height="50" VerticalAlignment="Bottom" Content="✉" Width="50"></Button>
                 </Grid>
 
             </Grid>

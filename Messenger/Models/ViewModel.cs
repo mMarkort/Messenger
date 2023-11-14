@@ -93,13 +93,19 @@ namespace Messenger.Models
         }
         public void AddMessage()
         {
-            Messages.Add(new MessageModel
+            if (!String.IsNullOrEmpty(MessageText))
             {
-                Message = MessageText,
-                MessageAutor = App.server.Nick
-            });
-            MessageText = "";
-            App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
+                Messages.Add(new MessageModel
+                {
+                    Message = MessageText,
+                    MessageAutor = App.server.Nick
+                });
+                MessageText = "";
+                App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
+            }
+
+            
         }
+
     }
 }

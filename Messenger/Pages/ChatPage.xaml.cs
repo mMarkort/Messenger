@@ -68,19 +68,7 @@ namespace Messenger
             openFile.ShowDialog(); 
         }
 
-        private void typingBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                send_Click(sender, e);
-                typingBox.Text = "";
-            }
-        }
 
-        private void send_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
 
 

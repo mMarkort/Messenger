@@ -11,4 +11,5 @@
     <system:String x:Key="ChooseChat">Choose chat to text...</system:String>
     <system:String x:Key="WriteAMessage">Write a message...</system:String>
     <system:String x:Key="ReEnter">ReEnter Password</system:String>
+    <system:String x:Key="ErrorMessage">Choose correct file format</system:String>
 </ResourceDictionary>

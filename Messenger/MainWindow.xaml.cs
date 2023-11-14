@@ -57,5 +57,6 @@ namespace Messenger
                 Application.Current.MainWindow.WindowState = WindowState.Normal;
             }
         }
+
     }
 }

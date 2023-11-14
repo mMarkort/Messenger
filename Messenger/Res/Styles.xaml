@@ -19,18 +19,21 @@
     </Style>
     
     <!--TextBlockMessages-->
-    <Style x:Key="cloudsForMessages" TargetType="{x:Type TextBlock}">
+    <Style x:Key="cloudsForMessages" TargetType="{x:Type TextBox}">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Background" Value="Aquamarine"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="BorderThickness" Value="0"/>
     </Style>
     
     <!--TextBlockNames-->
-    <Style x:Key="namesForMessages" TargetType="{x:Type TextBlock}">
+    <Style x:Key="namesForMessages" TargetType="{x:Type TextBox}">
         <Setter Property="Foreground" Value="Orange"/>
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
     </Style>
     
     <!--LISTVIEWHeader-->
@@ -223,6 +226,7 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Foreground" Value="white"/>
                         </Trigger>
+                        
 
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -265,6 +269,13 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontSize" Value="22"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
+    </Style>
+    
+    <!--Blocks-->
+    <Style x:Key="blocks" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="LightGray"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="22"/>
     </Style>
 
 </ResourceDictionary>

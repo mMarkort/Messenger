@@ -12,22 +12,32 @@ namespace Messenger.Res
 {
     public partial class CustomEvents : ResourceDictionary
     {
+        public ListViewItem item2;
         private void ListViewItem_LeftMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
             var item = sender as ListViewItem;
-            if (item != null && item.IsSelected)
+            
+            if (item != null && item.IsSelected && item != item2)
             {
-                dynamic a = App.chatPage.usersList.SelectedItem;
+                try
+                {
+                    dynamic a = App.chatPage.usersList.SelectedItem;
 
-                App.server.ChatID = Convert.ToInt32(a.ChatID);
+                    App.server.ChatID = Convert.ToInt32(a.ChatID);
 
-                Task.Run(async () => App.server.GetMessages.Execute(this)).Wait();
+                    Task.Run(async () => App.server.GetMessages.Execute(this)).Wait();
 
-                item.Background = new SolidColorBrush(Color.FromRgb(34, 76, 112));
-                App.chatPage.MessangerName.Content = a.ChatName.ToString();
-                App.chatPage.messagesView.Visibility = Visibility.Visible;
-                App.chatPage.chatBox.Visibility = Visibility.Visible;
-                App.chatPage.stub.Visibility = Visibility.Collapsed;
+                    item.Background = new SolidColorBrush(Color.FromRgb(34, 76, 112));
+                    App.chatPage.MessangerName.Content = a.ChatName.ToString();
+                    App.chatPage.messagesView.Visibility = Visibility.Visible;
+                    App.chatPage.chatBox.Visibility = Visibility.Visible;
+                    App.chatPage.stub.Visibility = Visibility.Collapsed;
+                    item2 = item;
+                }
+                catch 
+                {
+                    
+                }
             }
         }
 

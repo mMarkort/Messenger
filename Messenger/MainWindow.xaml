@@ -39,5 +39,6 @@
         </Border>
 
         <Frame x:Name="frameMenu" Grid.Row="1" Height="auto" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="frameMenu2" Grid.Row="1" Height="auto" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

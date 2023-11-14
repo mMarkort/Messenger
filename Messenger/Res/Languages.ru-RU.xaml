@@ -11,4 +11,5 @@
     <system:String x:Key="ChooseChat">Выберите чат...</system:String>
     <system:String x:Key="WriteAMessage">Наберите сообщение...</system:String>
     <system:String x:Key="ReEnter">Повторите пароль</system:String>
+    <system:String x:Key="ErrorMessage">Выберите правильный формат файла</system:String>
 </ResourceDictionary>

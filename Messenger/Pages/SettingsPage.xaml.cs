@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Security.Cryptography;
 using System.IO;
 using Microsoft.Win32;
+using static System.Net.WebRequestMethods;
 
 namespace Messenger
 {
@@ -24,7 +25,8 @@ namespace Messenger
     public partial class SettingsPage : Page
     {
         MainWindow mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-        
+
+
         public static byte[] imageBytes;
 
         public SettingsPage()
@@ -48,6 +50,7 @@ namespace Messenger
                 brush.ImageSource = image2;
                 imageCircle.Fill = brush;
             }
+            nickname.Content = App.server.Nick;
             
         }
 
@@ -59,12 +62,22 @@ namespace Messenger
 
         private void account_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            if (openFile.ShowDialog() == true)
-            {
-                App.selectedFilePath = openFile.FileName;
-                Change_Avatar();
-            }
+            //OpenFileDialog openFile = new OpenFileDialog();
+            //openFile.Filter = "Image Files (*.png;*.jpg;*.jpeg;*.gif)|*.png;*.jpg;*.jpeg;*.gif";
+            //try
+            //{
+            //    if (openFile.ShowDialog() == true)
+            //    {
+            //        App.selectedFilePath = openFile.FileName;
+            //        Change_Avatar();
+            //        ErrorText.Visibility = Visibility.Collapsed;
+            //    }
+            //}
+            //catch 
+            //{ 
+            //    ErrorText.Visibility = Visibility.Visible;
+            //}
+            mainWindow.frameMenu2.Navigate(new AccountPage());
         }
 
         public static string ComputeHash(string filePath)
