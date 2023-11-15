@@ -26,7 +26,6 @@ namespace Messenger
     {
         MainWindow mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
 
-
         public static byte[] imageBytes;
 
         public SettingsPage()
@@ -63,66 +62,13 @@ namespace Messenger
 
         private void account_Click(object sender, RoutedEventArgs e)
         {
-            //OpenFileDialog openFile = new OpenFileDialog();
-            //openFile.Filter = "Image Files (*.png;*.jpg;*.jpeg;*.gif)|*.png;*.jpg;*.jpeg;*.gif";
-            //try
-            //{
-            //    if (openFile.ShowDialog() == true)
-            //    {
-            //        App.selectedFilePath = openFile.FileName;
-            //        Change_Avatar();
-            //        ErrorText.Visibility = Visibility.Collapsed;
-            //    }
-            //}
-            //catch 
-            //{ 
-            //    ErrorText.Visibility = Visibility.Visible;
-            //}
-            mainWindow.frameMenu2.Navigate(new AccountPage());
-        }
-
-        public static string ComputeHash(string filePath)
-        {
-            BitmapImage image = new BitmapImage(new Uri(filePath));
-
-
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                BitmapEncoder encoder = new JpegBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(image));
-                encoder.Save(memoryStream);
-                imageBytes = memoryStream.ToArray();
-            }
-
-            return Convert.ToBase64String(imageBytes);
+            App.account = new AccountPage();
+            mainWindow.frameMenu2.Visibility = Visibility.Visible;
+            mainWindow.frameMenu2.Navigate(App.account);
+            App.account.Focus();
         }
 
 
-        public void Change_Avatar()
-        {
-            ImageBrush brush = new ImageBrush();
-
-            var ConvertedImage = ComputeHash(App.selectedFilePath);
-
-            imageBytes = Convert.FromBase64String(ConvertedImage);
-
-            App.server.AvatarString = ConvertedImage;
-
-            Task.Run(async()=>App.server.ChangeAvatar.Execute(this)).Wait();
-            //App.server.ChangeAvatar.ExecuteAsync(this).Wait();
-            // Create a BitmapImage from the byte array
-            BitmapImage image2 = new BitmapImage();
-            using (MemoryStream memoryStream = new MemoryStream(imageBytes))
-            {
-                image2.BeginInit();
-                image2.CacheOption = BitmapCacheOption.OnLoad;
-                image2.StreamSource = memoryStream;
-                image2.EndInit();
-            }
-
-            brush.ImageSource = image2;
-            imageCircle.Fill = brush;
-        }
 
         private void LanguageChoose_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

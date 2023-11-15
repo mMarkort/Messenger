@@ -77,7 +77,8 @@
                                             <Border CornerRadius="10" Padding="8" Margin="0,20,0,0" MinWidth="300"  MaxWidth="300" Background="Aquamarine" >
                                                 <StackPanel>
                                                     <TextBox Text="{Binding MessageAutor}" IsReadOnly="True" Style="{StaticResource namesForMessages}"/>
-                                                    <TextBox x:Name="MessTextBlock" IsReadOnly="True" Style="{StaticResource cloudsForMessages}"  TextWrapping="Wrap" Text="{Binding Message}" />
+                                                    <TextBox x:Name="MessTextBlock" IsReadOnly="True" Style="{StaticResource cloudsForMessages}"  TextWrapping="Wrap" Text="{Binding Message}"/>
+                                                    <TextBox Style="{StaticResource timeForClouds}" IsHitTestVisible="False" VerticalAlignment="Bottom" HorizontalAlignment="Right" Text="{Binding dateTime}"/>
                                                 </StackPanel>
                                             </Border>
                                         </DataTemplate>

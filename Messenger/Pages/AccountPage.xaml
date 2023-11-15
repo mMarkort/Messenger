@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:Messenger"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="700"
-      Title="AccountPage">
+      Title="AccountPage"
+      MouseDown="Page_MouseMove">
     <Page.Background>
         <SolidColorBrush Color="Black" Opacity="0.3"/>
     </Page.Background>
@@ -25,27 +26,29 @@
 
         <Grid Background="#163148" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="120"/>
+                <RowDefinition Height="200"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Ellipse x:Name="imageCircle" Height="60" Width="60" Margin="10,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Ellipse x:Name="imageCircle" MouseDown="imageCircle_MouseDown" Height="80" Width="80" Margin="0,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
                 <Ellipse.Fill>
                     <ImageBrush/>
                 </Ellipse.Fill>
             </Ellipse>
-            <Label x:Name="nickname" Style="{DynamicResource ResourceKey=labels}" Content="Абобус" Grid.Row="0" Height="40" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Margin="50,0,0,0"/>
+            <Label x:Name="nickname" Style="{DynamicResource ResourceKey=labels}" Content="admin" Grid.Row="0" Height="40" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Width="300" Margin="0,50,0,0"/>
 
-            <StackPanel Grid.Row="1">
-                <Button Style="{StaticResource SettingsButton}" Height="60" Content="{DynamicResource MyAccount}"/>
-                <Label Style="{DynamicResource ResourceKey=labels}" Margin="0,0,0,0" Content="{DynamicResource Language}"/>
-                <ComboBox Name="LanguageChoose" Margin="0,0,0,0" Height="40">
-                    <ComboBoxItem Content="English"/>
-                    <ComboBoxItem Content="Русский"/>
-                </ComboBox>
-                <Button Style="{StaticResource SettingsButton}" Margin="0,0,0,0" Height="60" Content="{DynamicResource LogOut}"/>
-                <TextBlock x:Name="ErrorText" Style="{DynamicResource ResourceKey=blocks}" Visibility="Collapsed" Text="{DynamicResource ErrorMessage}" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Row="1"/>
+            <StackPanel VerticalAlignment="Top" Grid.Row="1">
+                <Button Style="{StaticResource SettingsButton}" Height="60" Click="account_Click" Content="{DynamicResource changeAvatar}"/>
+                <Grid>
+                    <Button Grid.Row="1" Style="{StaticResource SettingsButton}" Height="60" Width="175" HorizontalAlignment="Left" Content="{DynamicResource changeNickname}" Click="_changeNick"/>
+                    <TextBox Style="{StaticResource textBoxes2}" x:Name="nickText" Text="" Grid.Row="1" Width="175" IsReadOnly="True" Height="60" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid>
+                    <TextBlock x:Name="ErrorText" Style="{DynamicResource ResourceKey=blocks}" Visibility="Hidden" Text="{DynamicResource ErrorMessage}" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Row="1"/>
+                    <TextBlock x:Name="ErrorText2" Style="{DynamicResource ResourceKey=blocks}" Visibility="Hidden" Text="{DynamicResource ErrorMessage2}" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Row="1"/>
+                </Grid>
             </StackPanel>
+            
         </Grid>
     </Grid>
 </Page>

@@ -58,5 +58,14 @@ namespace Messenger
             }
         }
 
+        private void _escButton_Click(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape && frameMenu2.Visibility == Visibility.Visible)
+            {
+                frameMenu2.Visibility = Visibility.Collapsed;
+                frameMenu2.Navigate(null);
+            }
+        }
+
     }
 }

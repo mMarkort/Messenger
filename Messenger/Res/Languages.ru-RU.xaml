@@ -12,4 +12,7 @@
     <system:String x:Key="WriteAMessage">Наберите сообщение...</system:String>
     <system:String x:Key="ReEnter">Повторите пароль</system:String>
     <system:String x:Key="ErrorMessage">Выберите правильный формат файла</system:String>
+    <system:String x:Key="changeAvatar">👤 Сменить аватар</system:String>
+    <system:String x:Key="changeNickname">Сменить имя</system:String>
+    <system:String x:Key="ErrorMessage2">Имя не должно быть пустым или содержать пробелы</system:String>
 </ResourceDictionary>

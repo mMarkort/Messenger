@@ -12,7 +12,8 @@
         ResizeMode="CanResize"
         Background="#1F4768"
         MinWidth="700"
-        MinHeight="600">
+        MinHeight="600"
+        Keyboard.KeyDown="_escButton_Click">
     <Window.DataContext>
         <models:ViewModel/>
     </Window.DataContext>
@@ -39,6 +40,6 @@
         </Border>
 
         <Frame x:Name="frameMenu" Grid.Row="1" Height="auto" NavigationUIVisibility="Hidden"/>
-        <Frame x:Name="frameMenu2" Grid.Row="1" Height="auto" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="frameMenu2" Grid.Row="1" Height="auto" Visibility="Collapsed" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

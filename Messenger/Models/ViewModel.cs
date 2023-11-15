@@ -91,6 +91,7 @@ namespace Messenger.Models
                 DateTime datettme;
                 DateTime.TryParse(item["datetime"], out datettme);
                 Messages.Add(new MessageModel { ChatID = chatID, dateTime = datettme, Message = item["msgCont"], MessageAutor = item["login"] });
+                App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
             }
         }
         public void AddMessage()

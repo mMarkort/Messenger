@@ -12,4 +12,7 @@
     <system:String x:Key="WriteAMessage">Write a message...</system:String>
     <system:String x:Key="ReEnter">ReEnter Password</system:String>
     <system:String x:Key="ErrorMessage">Choose correct file format</system:String>
+    <system:String x:Key="changeAvatar">👤 Change avatar</system:String>
+    <system:String x:Key="changeNickname">Change nickname</system:String>
+    <system:String x:Key="ErrorMessage2">The name must not be empty or contain spaces</system:String>
 </ResourceDictionary>

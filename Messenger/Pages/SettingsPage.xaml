@@ -21,7 +21,7 @@
             </Ellipse.Fill>
         </Ellipse>
         <Label x:Name="nickname" Style="{DynamicResource ResourceKey=labels}" Content="" Grid.Row="0" Height="40" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Margin="50,0,0,0"/>
-        
+
         <StackPanel Grid.Row="1">
             <Button Style="{StaticResource SettingsButton}" Height="60" Click="account_Click" Content="{DynamicResource MyAccount}"/>
             <Label Style="{DynamicResource ResourceKey=labels}" Margin="0,0,0,0" Content="{DynamicResource Language}"/>
@@ -30,8 +30,7 @@
                 <ComboBoxItem Content="Русский"/>
             </ComboBox>
             <Button Style="{StaticResource SettingsButton}" Margin="0,0,0,0" Height="60" Click="logout_Click" Content="{DynamicResource LogOut}"/>
-            <TextBlock x:Name="ErrorText" Style="{DynamicResource ResourceKey=blocks}" Visibility="Collapsed" Text="{DynamicResource ErrorMessage}" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Row="1"/>
         </StackPanel>
-        
+
     </Grid>
 </Page>
