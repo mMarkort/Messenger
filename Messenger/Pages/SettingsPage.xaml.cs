@@ -56,6 +56,7 @@ namespace Messenger
 
         private void logout_Click(object sender, RoutedEventArgs e)
         {
+            App.server.Exit();
             App.mainPage = new MainPage();
             mainWindow.frameMenu.Navigate(new MainPage());
         }

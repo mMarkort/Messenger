@@ -1,6 +1,7 @@
 ﻿using DevExpress.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -176,9 +177,13 @@ namespace Messenger
                 {
                     return Task.Run(() =>
                     {
-                        dynamic aboba = App.chatPage.usersList.SelectedItem;
 
-                        var a = new {MessageText=Message, Time = DateTime.Now, SelectedName = aboba.ChatName.ToString() };
+                        _writer.WriteLine("SendMessage");
+                        var a = new { MessageText = Message, Time = DateTime.Now, SelectedChat = ChatID };
+                    
+                        _writer.WriteLine(JsonConvert.SerializeObject(a));
+
+                        
                     });
                 }, () => _client?.Connected == true);
             }
@@ -199,6 +204,7 @@ namespace Messenger
                             string aStr = _reader.ReadLine();
                             Application.Current.Dispatcher.BeginInvoke((Action)(() =>
                             {
+                                viewModel.Messages.Clear();
                                 viewModel.AddMessageList(JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(aStr));
 
                                 //MainWindow mainWindowSus = Application.Current.MainWindow as MainWindow;
@@ -212,6 +218,10 @@ namespace Messenger
                     });
                 }, () => _client?.Connected == true);
             }
+        }
+        public void Exit()
+        {
+            _client.Client.Close();
         }
     }
 }

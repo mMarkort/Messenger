@@ -41,6 +41,8 @@ namespace Messenger.Models
 
             SendCommand = new RelayCommand(o => 
             {
+                App.server.Message = MessageText;
+                App.server.SendMessageUs.Execute(this);
                 this.AddMessage();
                 //Messages.Add(new MessageModel
                 //{
