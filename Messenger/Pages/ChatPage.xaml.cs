@@ -77,5 +77,10 @@ namespace Messenger
             mainWindow.frameMenu2.Navigate(App.chatEditing);
             App.chatEditing.Focus();
         }
+
+        private void _searchDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

@@ -149,8 +149,11 @@ namespace Messenger
                     App.settingsPage = new SettingsPage();
                     App.chatPage.settingsFrame.Navigate(App.settingsPage);
                     App.settingsPage.nickname.Content = nickname.Content;
+                    App.server.Nick = nickText.Text;
+                    Task.Run(() => App.server.ChangeNick.Execute(this)).Wait();
+
                 }
-                
+
             }
         }
 

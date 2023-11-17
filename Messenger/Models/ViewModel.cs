@@ -93,11 +93,16 @@ namespace Messenger.Models
         {
             foreach (var item in msgs)
             {
+                if (String.IsNullOrEmpty(item["chatID"]) || String.IsNullOrEmpty(item["datetime"]) || String.IsNullOrEmpty(item["msgCont"]) || String.IsNullOrEmpty(item["login"])) { continue; }
                 int chatID = Convert.ToInt32(item["chatID"]);
                 DateTime datettme;
                 DateTime.TryParse(item["datetime"], out datettme);
                 Messages.Add(new MessageModel { ChatID = chatID, dateTime = datettme, Message = item["msgCont"], MessageAutor = item["login"] });
+            }
+            if (Messages.Count()>0)
+            {
                 App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
+
             }
         }
 
@@ -105,7 +110,7 @@ namespace Messenger.Models
         {
             Users.Add(new UserListModel
             {
-                ChatID = "3",
+                ChatID = "3100",
                 ChatName = "Aboba",
                 unrMessages = 0
             });
@@ -117,13 +122,24 @@ namespace Messenger.Models
                 Messages.Add(new MessageModel
                 {
                     Message = MessageText,
-                    MessageAutor = App.server.Nick
+                    MessageAutor = App.server.Nick,
+                    dateTime = DateTime.Now
                 });
                 MessageText = "";
                 App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
             }
+        }
+        public void AddMessageServer(Dictionary<string, string> Msg)
+        {
 
-            
+            if (Msg.Count>0)
+            {
+                int chatID = Convert.ToInt32(Msg["chatID"]);
+                DateTime datettme;
+                DateTime.TryParse(Msg["datetime"], out datettme);
+                Messages.Add(new MessageModel { ChatID = chatID, dateTime = datettme, Message = Msg["msgCont"], MessageAutor = Msg["login"] });
+                App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
+            }
         }
 
     }

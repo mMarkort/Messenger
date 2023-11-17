@@ -30,10 +30,10 @@ namespace Messenger
             InitializeComponent();
             nickText.Text = App.chatPage.MessangerName.Content.ToString();
             //заменить на бэкграунд чата
-            if (!String.IsNullOrEmpty(App.server.AvatarString))
+            if (!String.IsNullOrEmpty(App.server.BackgroundString))
             {
                 ImageBrush brush = new ImageBrush();
-                imageBytes = Convert.FromBase64String(App.server.AvatarString);
+                imageBytes = Convert.FromBase64String(App.server.BackgroundString);
                 BitmapImage image2 = new BitmapImage();
                 using (MemoryStream memoryStream = new MemoryStream(imageBytes))
                 {
@@ -81,9 +81,9 @@ namespace Messenger
 
             imageBytes = Convert.FromBase64String(ConvertedImage);
 
-            App.server.AvatarString = ConvertedImage;
+            App.server.BackgroundString = ConvertedImage;
 
-            Task.Run(async () => App.server.ChangeAvatar.Execute(this)).Wait();
+            Task.Run(async () => App.server.ChangeBackground.Execute(this)).Wait();
             //App.server.ChangeAvatar.ExecuteAsync(this).Wait();
             // Create a BitmapImage from the byte array
             BitmapImage image2 = new BitmapImage();

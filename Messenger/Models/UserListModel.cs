@@ -13,5 +13,6 @@ namespace Messenger.Models
         public string ChatName { get; set; }
         public string ChatID { get; set; }
         public int unrMessages { get; set; }
+        public string chatAvatar { get; set; }
     }
 }

@@ -17,6 +17,9 @@ using Messenger.Models;
 using System.Text.Json.Serialization;
 
 using Newtonsoft.Json;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
+
 namespace Messenger
 {
     public partial class ClientServer : ViewModelBase
@@ -48,6 +51,7 @@ namespace Messenger
 
         public ViewModel viewModel;
 
+        public bool IsBackChange;
         public ClientServer()
         {
             
@@ -64,14 +68,58 @@ namespace Messenger
                         if (_client?.Connected == true)
                         {
                             var line = _reader?.ReadLine();
-                            if (line != null)
+                            if (!String.IsNullOrEmpty(line))
                             {
-                                Chat=line;
-                            }
-                            else
-                            {
-                                _client.Close();
-                                Chat += "Connected error.\n";
+                                if (line == "Message")
+                                {
+                                    var msg = _reader?.ReadLine();
+                                    Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                                    {
+                                        viewModel.AddMessageServer(JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(msg).Last());
+                                        //MainWindow mainWindowSus = Application.Current.MainWindow as MainWindow;
+                                        //App.chatPage.DataContext = viewModel;
+                                    }));
+                                }
+                                else if (line == "MessagesFromChat")
+                                {
+                                    var aStr = _reader?.ReadLine();
+                                    if (!String.IsNullOrEmpty(aStr))
+                                    {
+                                        Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                                        {
+                                            viewModel.Messages.Clear();
+                                            var a = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(aStr);
+                                            if (a.Count>0)
+                                            {
+                                                viewModel.AddMessageList(a);
+
+                                            }
+                                            //MainWindow mainWindowSus = Application.Current.MainWindow as MainWindow;
+                                            //App.chatPage.DataContext = viewModel;
+                                        }));
+                                    }
+                                }else if(line== "BackGround")
+                                {
+                                    var aStr = _reader.ReadLine();
+                                    Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                                    {
+                                        byte[] imageBytes;
+                                        BackgroundString = aStr;
+                                        ImageBrush brush = new ImageBrush();
+                                        imageBytes = Convert.FromBase64String(App.server.BackgroundString);
+                                        BitmapImage image2 = new BitmapImage();
+                                        using (MemoryStream memoryStream = new MemoryStream(imageBytes))
+                                        {
+                                            image2.BeginInit();
+                                            image2.CacheOption = BitmapCacheOption.OnLoad;
+                                            image2.StreamSource = memoryStream;
+                                            image2.EndInit();
+                                        }
+                                        brush.ImageSource = image2;
+                                        App.chatPage.messagesView.Background = brush;
+                                    }));
+                                    
+                                }
                             }
                         }
                         Task.Delay(10).Wait();
@@ -128,7 +176,7 @@ namespace Messenger
                                 App.chatPage.DataContext = viewModel;
                                 mainWindowSus.frameMenu.Navigate(App.chatPage);
                             }));
-
+                            Listener();
 
                         }
                         else { MessageBox.Show(result); }
@@ -201,21 +249,63 @@ namespace Messenger
                         {
                             _writer?.WriteLine("GetMessagesFromChat");
                             _writer?.WriteLine(ChatID);
-
-                            string aStr = _reader.ReadLine();
-                            Application.Current.Dispatcher.BeginInvoke((Action)(() =>
-                            {
-                                viewModel.Messages.Clear();
-                                viewModel.AddMessageList(JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(aStr));
-
-                                //MainWindow mainWindowSus = Application.Current.MainWindow as MainWindow;
-                                //App.chatPage.DataContext = viewModel;
-                            }));
-
-
-
                         }
                         
+                    });
+                }, () => _client?.Connected == true);
+            }
+        }
+        public AsyncCommand GetBackground
+        {
+            get
+            {
+                return new AsyncCommand(() =>
+                {
+                    return Task.Run(() =>
+                    {
+                        if (ChatID >= 0)
+                        {
+                            _writer?.WriteLine("GetBackGround");
+                            _writer?.WriteLine(ChatID);
+                        }
+
+                    });
+                }, () => _client?.Connected == true);
+            }
+        }
+        public AsyncCommand ChangeBackground
+        {
+            get
+            {
+                return new AsyncCommand(() =>
+                {
+                    return Task.Run(() =>
+                    {
+                        if (ChatID >= 0)
+                        {
+                            _writer?.WriteLine("ChangeBackground");
+                            _writer?.WriteLine(BackgroundString);
+                            _writer?.WriteLine(ChatID);
+                        }
+
+                    });
+                }, () => _client?.Connected == true);
+            }
+        }
+        public AsyncCommand ChangeNick
+        {
+            get
+            {
+                return new AsyncCommand(() =>
+                {
+                    return Task.Run(() =>
+                    {
+                        if (ChatID >= 0)
+                        {
+                            _writer?.WriteLine("ChangeNick");
+                            _writer?.WriteLine(Nick);
+                        }
+
                     });
                 }, () => _client?.Connected == true);
             }
