@@ -34,6 +34,7 @@ namespace Messenger
         public static ChatPage chatPage;
         public static ClientServer server;
         public static AccountPage account;
+        public static ChatEditing chatEditing;
         public static SaveData save;
         public static SettingsPage settingsPage;
         public static AuthPage authPage = new AuthPage();

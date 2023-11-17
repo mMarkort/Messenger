@@ -29,13 +29,15 @@ namespace Messenger
     {
         public string userID;
         public static bool clicked = false;
+        MainWindow mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
 
         public ChatPage(string UserID)
         {
             userID = UserID;
             App.userID = UserID;
             InitializeComponent();
-            
+
+
         }
 
 
@@ -68,9 +70,12 @@ namespace Messenger
             openFile.ShowDialog(); 
         }
 
-
-
-
-
+        private void _chatEditing(object sender, RoutedEventArgs e)
+        {
+            App.chatEditing = new ChatEditing();
+            mainWindow.frameMenu2.Visibility = Visibility.Visible;
+            mainWindow.frameMenu2.Navigate(App.chatEditing);
+            App.chatEditing.Focus();
+        }
     }
 }

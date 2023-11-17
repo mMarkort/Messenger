@@ -16,6 +16,7 @@ namespace Messenger.Models
         public ObservableCollection<MessageModel> Messages { get; set; }
 
         public RelayCommand SendCommand { get; set; }
+        public RelayCommand SendCommandToChats { get; set; }
 
         private string _message;
 
@@ -52,7 +53,12 @@ namespace Messenger.Models
                 //MessageText = "";
                 //App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
             });
-            
+
+            SendCommandToChats = new RelayCommand(a =>
+            {
+                this.AddChatToList();
+            });
+
 
             //SqlConnection connection = null;
             //connection = new SqlConnection(App.connectionString);
@@ -64,7 +70,7 @@ namespace Messenger.Models
 
             //var chatsToList = chatsTable.Select().AsEnumerable().Where(p => p["UserID"].ToString() == App.userID).Select(p => p["ChatID"]).ToList();
             //var opponents = chatsTable.Select().AsEnumerable().Where(p => chatsToList.Contains(p["ChatID"]) && p["UserID"].ToString() != App.userID).Select(p => new { ChatName = p["Login"] }).ToList();
-            
+
             //foreach ( var opponent in opponents)
             //{
             //    Users.Add(new UserListModel
@@ -93,6 +99,16 @@ namespace Messenger.Models
                 Messages.Add(new MessageModel { ChatID = chatID, dateTime = datettme, Message = item["msgCont"], MessageAutor = item["login"] });
                 App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
             }
+        }
+
+        public void AddChatToList()
+        {
+            Users.Add(new UserListModel
+            {
+                ChatID = "3",
+                ChatName = "Aboba",
+                unrMessages = 0
+            });
         }
         public void AddMessage()
         {

@@ -95,7 +95,10 @@
                             <Setter Property="Background" Value="#1a3b57"/>
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="Background" Value="#224c70"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="False">
+                            <Setter Property="Background" Value="Transparent"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -113,6 +116,12 @@
     <!--Stack-->
     <Style x:Key="stackStyle" x:Name="stack" TargetType="{x:Type StackPanel}">
         <Setter Property="Background" Value="Transparent"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Black"/>
+                <Setter Property="Opacity" Value="0.6"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!--CHATTEXTBOX-->
@@ -314,5 +323,22 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontSize" Value="22"/>
     </Style>
+
+    <Style x:Key="chatGrid" x:Name="unrMessGrid" TargetType="{x:Type Grid}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=unrMess, Path=Text}" Value="0">
+                <Setter Property="Visibility" Value="Hidden"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="blocks2" x:Name="unrMess" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="LightGray"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="22"/>
+    </Style>
+
+
+    <!--chats-->
 
 </ResourceDictionary>

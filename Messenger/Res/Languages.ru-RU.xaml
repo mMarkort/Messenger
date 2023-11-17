@@ -15,4 +15,8 @@
     <system:String x:Key="changeAvatar">👤 Сменить аватар</system:String>
     <system:String x:Key="changeNickname">Сменить имя</system:String>
     <system:String x:Key="ErrorMessage2">Имя не должно быть пустым или содержать пробелы</system:String>
+    <system:String x:Key="ErrorLogin">Логин или пароль введены неправильно</system:String>
+    <system:String x:Key="changeBackground">💬Сменить фон</system:String>
+    <system:String x:Key="changeChatName">Сменить название чата</system:String>
+
 </ResourceDictionary>

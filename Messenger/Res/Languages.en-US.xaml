@@ -15,4 +15,7 @@
     <system:String x:Key="changeAvatar">👤 Change avatar</system:String>
     <system:String x:Key="changeNickname">Change nickname</system:String>
     <system:String x:Key="ErrorMessage2">The name must not be empty or contain spaces</system:String>
+    <system:String x:Key="ErrorLogin">Login or password entered incorrectly</system:String>
+    <system:String x:Key="changeBackground">💬Change background</system:String>
+    <system:String x:Key="changeChatName">Change chat name</system:String>
 </ResourceDictionary>

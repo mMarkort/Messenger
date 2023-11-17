@@ -27,6 +27,7 @@ namespace Messenger
         public string Nick { get; set; } = "";
         public bool Status { get; set; } = true;
         public string AvatarString { get; set; } = "";
+        public string BackgroundString { get; set; } = "";
         public string Password { get; set; } = "";
         public int ChatID { get; set; } = 0;
         public string? publicSeverKey { get; set; } //Публичный ключ сервера для шифрования
