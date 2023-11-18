@@ -120,40 +120,41 @@ namespace Messenger
         private void _changeNick(object sender, RoutedEventArgs e)
         {
 
-            if (_check)
-            {
-                nickText.IsReadOnly = false;
-                nickText.Focus();
-                nickText.Text = "";
-                _check = false;
-            }
-            else if (!_check)
-            {
-                if (String.IsNullOrEmpty(nickText.Text) || nickText.Text.Contains(" "))
-                {
-                    nickText.Text = App.chatPage.MessangerName.Content.ToString();
-                    ErrorText2.Visibility = Visibility.Visible;
-                    nickText.IsReadOnly = true;
-                    _check = true;
-                }
-                else
-                {
-                    foreach (var item in App.server.viewModel.Users)
-                    {
-                        if (item.ChatName == App.chatPage.MessangerName.Content.ToString())
-                        {
-                            item.ChatName = nickText.Text;
-                            MessageBox.Show(item.ChatName);
-                        }
-                    }
-                    ErrorText2.Visibility = Visibility.Hidden;
-                    App.chatPage.MessangerName.Content = nickText.Text;
-                    nickText.IsReadOnly = true;
-                    _check = true;
-                    
-                }
+            //if (_check)
+            //{
+            //    nickText.IsReadOnly = false;
+            //    nickText.Focus();
+            //    nickText.Text = "";
+            //    _check = false;
+            //}
+            //else if (!_check)
+            //{
+            //    if (String.IsNullOrEmpty(nickText.Text) || nickText.Text.Contains(" "))
+            //    {
+            //        nickText.Text = App.chatPage.MessangerName.Content.ToString();
+            //        ErrorText2.Visibility = Visibility.Visible;
+            //        nickText.IsReadOnly = true;
+            //        _check = true;
+            //    }
+            //    else
+            //    {
+            //        foreach (var item in App.server.viewModel.Users)
+            //        {
+            //            if (item.ChatName == App.chatPage.MessangerName.Content.ToString())
+            //            {
+            //                item.ChatName = nickText.Text;
+            //                MessageBox.Show(item.ChatName);
+            //            }
+            //        }
+            //        ErrorText2.Visibility = Visibility.Hidden;
+            //        App.chatPage.MessangerName.Content = nickText.Text;
+            //        nickText.IsReadOnly = true;
+            //        _check = true;
 
-            }
+            //    }
+
+            //}
+            Task.Run(async () => App.server.DeleteChat.Execute(this)).Wait();
         }
 
     }

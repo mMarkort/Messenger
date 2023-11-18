@@ -17,6 +17,6 @@
         <Label Style="{DynamicResource labels}" Margin="0,70,0,0" Content="{DynamicResource ReEnter}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="40" />
         <PasswordBox Style="{StaticResource ResourceKey=passwordBoxes}" x:Name="passwordConfText" KeyDown="passwordConfText_KeyDown" PasswordChar="•" Margin="0,145,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="35"/>
 
-        <Button Style="{StaticResource ResourceKey=buttons2}" x:Name="authBut" Margin="0,240,0,0" Content="{DynamicResource SignIn}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="authBut_Click" Height="40" Width="180"/>
+        <Button Command="{Binding Registration}" Style="{StaticResource ResourceKey=buttons2}" x:Name="authBut" Margin="0,240,0,0" Content="{DynamicResource SignIn}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="authBut_Click" Height="40" Width="180"/>
     </Grid>
 </Page>

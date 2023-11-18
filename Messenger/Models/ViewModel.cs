@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Interop;
 
 namespace Messenger.Models
 {
@@ -56,7 +57,7 @@ namespace Messenger.Models
 
             SendCommandToChats = new RelayCommand(a =>
             {
-                this.AddChatToList();
+                //this.AddChatToList();
             });
 
 
@@ -83,11 +84,15 @@ namespace Messenger.Models
         }
         public void AddChatList(List<Dictionary<string, string>> chats)
         {
-            foreach (var item in chats)
+            if (chats!=null)
             {
-                int a = String.IsNullOrEmpty(item["UnReMessage"]) ? 0 : Convert.ToInt32(item["UnReMessage"]);
-                Users.Add(new UserListModel { ChatName = item["ChatName"], unrMessages=a ,ChatID= item["ChatID"] });
+                foreach (var item in chats)
+                {
+                    int a = String.IsNullOrEmpty(item["UnReMessage"]) ? 0 : Convert.ToInt32(item["UnReMessage"]);
+                    Users.Add(new UserListModel { ChatName = item["ChatName"], unrMessages = a, ChatID = item["ChatID"] });
+                }
             }
+            
         }
         public void AddMessageList(List<Dictionary<string, string>> msgs)
         {
@@ -106,12 +111,12 @@ namespace Messenger.Models
             }
         }
 
-        public void AddChatToList()
+        public void AddChatToList(Dictionary<string, string> chat)
         {
             Users.Add(new UserListModel
             {
-                ChatID = "3100",
-                ChatName = "Aboba",
+                ChatID = chat["chatId"],
+                ChatName = chat["ChatName"],
                 unrMessages = 0
             });
         }
@@ -137,9 +142,34 @@ namespace Messenger.Models
                 int chatID = Convert.ToInt32(Msg["chatID"]);
                 DateTime datettme;
                 DateTime.TryParse(Msg["datetime"], out datettme);
-                Messages.Add(new MessageModel { ChatID = chatID, dateTime = datettme, Message = Msg["msgCont"], MessageAutor = Msg["login"] });
-                App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
+                if (App.server.ChatID==chatID)
+                {
+                    Messages.Add(new MessageModel { ChatID = chatID, dateTime = datettme, Message = Msg["msgCont"], MessageAutor = Msg["login"] });
+                    App.chatPage.messagesList.ScrollIntoView(Messages[Messages.Count() - 1]);
+                }
             }
+        }
+        //public void AddUnrMessage (string id)
+        //{
+        //    Users.FirstOrDefault(x =>x.ChatID==id).unrMessages= 0;
+        //}
+        public void AddUserSearchList(List<Dictionary<string, string>> usersus)
+        {
+            if (usersus.Count > 0)
+            {
+                foreach (var item in usersus)
+                {
+                    int chatID = Convert.ToInt32(item["ChatID"]);
+                    string login = item["Login"];
+                    int usID = Convert.ToInt32(item["userID"]);
+                    //aboba.Add(new abobaModel{логин = login, айди юзера = usID, айди чата = chatID});
+                }
+            }
+        }
+        public void RemoveChat(string ChatID)
+        {
+            var a = Users.First(x=>x.ChatID==ChatID);
+            Users.Remove(a);
         }
 
     }

@@ -19,6 +19,7 @@ using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using System.Windows.Interop;
 
 namespace Messenger
 {
@@ -32,6 +33,7 @@ namespace Messenger
         public string AvatarString { get; set; } = "";
         public string BackgroundString { get; set; } = "";
         public string Password { get; set; } = "";
+        public string ConfirmPassword { get; set; } = "";
         public int ChatID { get; set; } = 0;
         public string? publicSeverKey { get; set; } //Публичный ключ сервера для шифрования
         public string? publicClientKey { get; set; }//Публичный ключ пользователя
@@ -78,6 +80,11 @@ namespace Messenger
                                         viewModel.AddMessageServer(JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(msg).Last());
                                         //MainWindow mainWindowSus = Application.Current.MainWindow as MainWindow;
                                         //App.chatPage.DataContext = viewModel;
+                                        //if (ChatID.ToString() != JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(msg).Last()["chatID"])
+                                        //{
+                                        //    viewModel.AddUnrMessage(JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(msg).Last()["chatID"]);   
+                                        //}
+                                        //App.chatPage.DataContext = viewModel;
                                     }));
                                 }
                                 else if (line == "MessagesFromChat")
@@ -92,7 +99,6 @@ namespace Messenger
                                             if (a.Count>0)
                                             {
                                                 viewModel.AddMessageList(a);
-
                                             }
                                             //MainWindow mainWindowSus = Application.Current.MainWindow as MainWindow;
                                             //App.chatPage.DataContext = viewModel;
@@ -119,6 +125,16 @@ namespace Messenger
                                         App.chatPage.messagesView.Background = brush;
                                     }));
                                     
+                                }else if (line == "GetUsersAndChatsIDsWithUser")
+                                {
+                                    viewModel.AddUserSearchList(JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(_reader.ReadLine())) ;
+                                }else if (line == "NewChat")
+                                {
+                                    viewModel.AddChatToList(JsonConvert.DeserializeObject<Dictionary<string, string>>(_reader?.ReadLine()));
+                                }else if (line== "DeleteChat")
+                                {
+                                    string chatID = _reader?.ReadLine();
+                                    viewModel.RemoveChat(chatID);
                                 }
                             }
                         }
@@ -179,12 +195,67 @@ namespace Messenger
                             Listener();
 
                         }
-                        else { MessageBox.Show(result); }
+                        else {
+                            Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                            { 
+                                App.loginPage.ErrorLogin.Visibility = Visibility.Visible;
+                            }));
+                        }
                         //}
                         //catch (Exception ex)
                         //{
                         //    MessageBox.Show(ex.Message);
                         //}
+                    });
+                }, () => _client is null || _client?.Connected == false);
+            }
+        }
+        public AsyncCommand Registration
+        {
+            get
+            {
+                return new AsyncCommand(() =>
+                {
+                    return Task.Run(() =>
+                    {
+                        _client = new TcpClient();
+                        _client.Connect(IP, Port);
+                        _reader = new StreamReader(_client.GetStream());
+                        _writer = new StreamWriter(_client.GetStream());
+
+                        _writer.AutoFlush = true;
+                        _writer?.WriteLine("Registration");
+                        _writer?.WriteLine(JsonConvert.SerializeObject(new { Login = Nick, Password, ConfirmPassword }));
+                        //_writer.WriteLine(Nick);
+                        //_writer.WriteLine(Password);
+                        var result = _reader?.ReadLine();
+
+                        if (result == "OK")
+                        {
+                            var usId = _reader?.ReadLine();
+                            _writer?.WriteLine("GetChats");
+                            viewModel = new ViewModel();
+                            string aStr = _reader.ReadLine();
+                            viewModel.AddChatList(JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(aStr));
+                            Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                            {
+                                MainWindow mainWindowSus = Application.Current.MainWindow as MainWindow;
+                                connected = true;
+                                App.chatPage = new ChatPage(usId);
+                                App.chatPage.DataContext = viewModel;
+                                mainWindowSus.frameMenu.Navigate(App.chatPage);
+                            }));
+                            Listener();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show(result);
+                            //Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                            //{
+                            //    App.loginPage.ErrorLogin.Visibility = Visibility.Visible;
+                            //}));
+                        }
                     });
                 }, () => _client is null || _client?.Connected == false);
             }
@@ -226,13 +297,13 @@ namespace Messenger
                 {
                     return Task.Run(() =>
                     {
+                        if (!String.IsNullOrEmpty(Message))
+                        {
+                            _writer.WriteLine("SendMessage");
+                            var a = new { MessageText = Message, Time = DateTime.Now, SelectedChat = ChatID };
 
-                        _writer.WriteLine("SendMessage");
-                        var a = new { MessageText = Message, Time = DateTime.Now, SelectedChat = ChatID };
-                    
-                        _writer.WriteLine(JsonConvert.SerializeObject(a));
-
-                        
+                            _writer.WriteLine(JsonConvert.SerializeObject(a));
+                        }
                     });
                 }, () => _client?.Connected == true);
             }
@@ -313,6 +384,51 @@ namespace Messenger
         public void Exit()
         {
             _client.Client.Close();
+        }
+        public AsyncCommand GetUsersAndChatsIDsWithUser
+        {
+            get
+            {
+                return new AsyncCommand(() =>
+                {
+                    return Task.Run(() =>
+                    {
+                        if (ChatID >= 0)
+                        {
+                            _writer?.WriteLine("GetUsersAndChatsIDsWithUser");
+                        }
+
+                    });
+                }, () => _client?.Connected == true);
+            }
+        }
+        public void AddChat(int ChelID, string ChelLogin, string ChatName)
+        {
+            Task.Run(() => 
+            {
+                _writer?.WriteLine("AddChat");
+                _writer?.WriteLine(ChatName);
+                _writer?.WriteLine(ChelID);
+                _writer?.WriteLine(ChelLogin);
+            });
+        }
+        public AsyncCommand DeleteChat
+        {
+            get
+            {
+                return new AsyncCommand(() =>
+                {
+                    return Task.Run(() =>
+                    {
+                        if (ChatID >= 0)
+                        {
+                            _writer?.WriteLine("DeleteChat");
+                            _writer?.WriteLine(ChatID);
+                        }
+
+                    });
+                }, () => _client?.Connected == true);
+            }
         }
     }
 }

@@ -30,40 +30,12 @@ namespace Messenger
 
         private void authBut_Click(object sender, RoutedEventArgs e)
         {
-            
 
-            Regex eng = new Regex(@"^[A-Za-z\d_-]+$");
-            var logins = App.usersTable.Select().AsEnumerable().Where(x => x["Login"].ToString() == loginText.Text).ToList();
-
-            if (loginText.Text != ""&& !loginText.Text.Contains(" "))
-            {
-                if (logins.Count() == 0)
-                {
-                    if (passwordText.Password.Length < 6 | !(eng.Match(passwordText.Password).Success) | !(Regex.Match(passwordText.Password, @"\d").Success))
-                    {
-                        MessageBox.Show("Пароль должен содержать 6 или более символов\nДолжен иметь хотя бы одну цифру\nДолжен содержать английские символы");
-                    }
-                    else
-                    {
-                        if (passwordText.Password == passwordConfText.Password)
-                        {
-                            App.mainPage.Login.Background = new SolidColorBrush(Color.FromRgb(22, 49, 72));
-                            App.mainPage.Signin.Background = new SolidColorBrush(Color.FromRgb(31, 71, 104));
-                            App.mainPage.frameLogin.Navigate(App.loginPage);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Пароли не совпадают");
-                        }
-                        
-                    }
-                    
-                }
-                else
-                {
-                    MessageBox.Show("Такой логин уже существует");
-                }
-            }
+            App.server = new ClientServer();
+            App.server.Nick = loginText.Text;
+            App.server.Password = passwordText.Password;
+            App.server.ConfirmPassword = passwordConfText.Password;
+            App.server.Registration.ExecuteAsync(this);
 
         }
         private void loginText_KeyDown(object sender, KeyEventArgs e)

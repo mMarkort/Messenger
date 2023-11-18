@@ -80,6 +80,7 @@ namespace Messenger
 
         private void _searchDown(object sender, MouseButtonEventArgs e)
         {
+            Task.Run(() => App.server.GetUsersAndChatsIDsWithUser.Execute(this)).Wait();
 
         }
     }
