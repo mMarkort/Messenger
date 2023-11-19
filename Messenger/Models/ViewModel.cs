@@ -18,6 +18,7 @@ namespace Messenger.Models
         public ObservableCollection<MessageModel> Messages { get; set; }
         public ObservableCollection<SearchRes> searchRes { get; set; }
         public ObservableCollection<SearchRes> searchResFilter { get; set; }
+        public ObservableCollection<UserListModel> EditedUsers { get; set; }
 
         public RelayCommand SendCommand { get; set; }
         public RelayCommand SendCommandToChats { get; set; }
@@ -45,6 +46,7 @@ namespace Messenger.Models
             Messages = new ObservableCollection<MessageModel>();
             searchRes = new ObservableCollection<SearchRes>();
             searchResFilter = new ObservableCollection<SearchRes>();
+            EditedUsers = new ObservableCollection<UserListModel>();
 
             SendCommand = new RelayCommand(o => 
             {
@@ -106,7 +108,13 @@ namespace Messenger.Models
                 ChatName = chat["ChatName"],
                 unrMessages = 0
             });
-            MessageBox.Show(chat["ChatName"]);
+
+            EditedUsers.Add(new UserListModel
+            {
+                ChatID = chat["chatId"],
+                ChatName = chat["ChatName"],
+                unrMessages = 0
+            });
         }
         public void AddMessage()
         {
@@ -163,8 +171,8 @@ namespace Messenger.Models
         {
             var a = Users.First(x=>x.ChatID==ChatID);
             Users.Remove(a);
-
-            App.chatPage.usersList.ItemsSource = Users;
+            EditedUsers = Users.Select(a=>a).ToObservableCollection();
+            App.chatPage.usersList.ItemsSource = EditedUsers;
         }
 
         public void SearchUsers(string SearchText)

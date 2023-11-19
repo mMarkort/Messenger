@@ -25,7 +25,7 @@
         <StackPanel Grid.Row="1">
             <Button Style="{StaticResource SettingsButton}" Height="60" Click="account_Click" Content="{DynamicResource MyAccount}"/>
             <Label Style="{DynamicResource ResourceKey=labels}" Margin="0,0,0,0" Content="{DynamicResource Language}"/>
-            <ComboBox Name="LanguageChoose" Margin="0,0,0,0" Height="40" SelectionChanged="LanguageChoose_SelectionChanged">
+            <ComboBox Style="{DynamicResource comboboxStyle}" Name="LanguageChoose" Margin="0,0,0,0" Height="50" SelectionChanged="LanguageChoose_SelectionChanged">
                 <ComboBoxItem Content="English"/>
                 <ComboBoxItem Content="Русский"/>
             </ComboBox>

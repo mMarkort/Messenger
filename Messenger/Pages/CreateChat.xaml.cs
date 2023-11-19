@@ -50,6 +50,14 @@ namespace Messenger
             App.server.AddChat(UserId, ChatName, ChatName);
             mainWindow.frameMenu2.Visibility = Visibility.Collapsed;
             mainWindow.frameMenu2.Navigate(null);
+
+            App.chatPage.searchList.Visibility = Visibility.Collapsed;
+            App.chatPage.bord2.Visibility = Visibility.Collapsed;
+
+            App.chatPage.usersList.Visibility = Visibility.Visible;
+            App.chatPage.bord.Visibility = Visibility.Visible;
+
+            App.chatPage.closeSearch.Visibility = Visibility.Collapsed;
         }
     }
 }

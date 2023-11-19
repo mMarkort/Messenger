@@ -75,7 +75,6 @@ namespace Messenger
             
             App.save = new SaveData();
 
-            
             if (LanguageChoose.SelectedIndex == 0)
             {
                 App.save.Save(App.save.data = new SaveData.MyData() { Language = 0 });

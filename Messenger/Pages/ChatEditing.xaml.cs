@@ -119,6 +119,8 @@ namespace Messenger
         private void _changeNick(object sender, RoutedEventArgs e)
         {
             Task.Run(async () => App.server.DeleteChat.Execute(this)).Wait();
+            mainWindow.frameMenu2.Visibility = Visibility.Collapsed;
+            mainWindow.frameMenu2.Navigate(null);
         }
 
     }
