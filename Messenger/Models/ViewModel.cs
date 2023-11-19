@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
+using DevExpress.Mvvm.Native;
 
 namespace Messenger.Models
 {
@@ -15,6 +16,8 @@ namespace Messenger.Models
     {
         public ObservableCollection<UserListModel> Users { get; set; }
         public ObservableCollection<MessageModel> Messages { get; set; }
+        public ObservableCollection<SearchRes> searchRes { get; set; }
+        public ObservableCollection<SearchRes> searchResFilter { get; set; }
 
         public RelayCommand SendCommand { get; set; }
         public RelayCommand SendCommandToChats { get; set; }
@@ -40,6 +43,8 @@ namespace Messenger.Models
         {
             Users = new ObservableCollection<UserListModel>();
             Messages = new ObservableCollection<MessageModel>();
+            searchRes = new ObservableCollection<SearchRes>();
+            searchResFilter = new ObservableCollection<SearchRes>();
 
             SendCommand = new RelayCommand(o => 
             {
@@ -57,28 +62,10 @@ namespace Messenger.Models
 
             SendCommandToChats = new RelayCommand(a =>
             {
-                //this.AddChatToList();
+                //this.AddUserSearchList();
             });
 
 
-            //SqlConnection connection = null;
-            //connection = new SqlConnection(App.connectionString);
-            //SqlCommand getChats = new SqlCommand("SELECT Chat.ChatID, Users.UserID,Users.Login FROM Chat join userNchat on userNchat.ChatID = Chat.ChatID join Users on Users.UserID = userNchat.UserID", connection);
-            //chatsAdapter = new SqlDataAdapter(getChats);
-            //chatsTable = new DataTable();
-            //connection.Open();
-            //chatsAdapter.Fill(chatsTable);
-
-            //var chatsToList = chatsTable.Select().AsEnumerable().Where(p => p["UserID"].ToString() == App.userID).Select(p => p["ChatID"]).ToList();
-            //var opponents = chatsTable.Select().AsEnumerable().Where(p => chatsToList.Contains(p["ChatID"]) && p["UserID"].ToString() != App.userID).Select(p => new { ChatName = p["Login"] }).ToList();
-
-            //foreach ( var opponent in opponents)
-            //{
-            //    Users.Add(new UserListModel
-            //    {
-            //        ChatName = opponent.ChatName.ToString()
-            //    });
-            //}
 
 
         }
@@ -162,7 +149,12 @@ namespace Messenger.Models
                     int chatID = Convert.ToInt32(item["ChatID"]);
                     string login = item["Login"];
                     int usID = Convert.ToInt32(item["userID"]);
-                    //aboba.Add(new abobaModel{логин = login, айди юзера = usID, айди чата = chatID});
+                    searchRes.Add(new SearchRes
+                    {
+                        ChatName = login,
+                        UserID = usID,
+                        ChatID = chatID
+                    });
                 }
             }
         }
@@ -170,6 +162,14 @@ namespace Messenger.Models
         {
             var a = Users.First(x=>x.ChatID==ChatID);
             Users.Remove(a);
+
+            App.chatPage.usersList.ItemsSource = Users;
+        }
+
+        public void SearchUsers(string SearchText)
+        {
+            searchResFilter = searchRes.Where(x => x.ChatName.Contains(SearchText)).Select(a=>a).ToObservableCollection();
+            App.chatPage.searchList.ItemsSource = searchResFilter;
         }
 
     }

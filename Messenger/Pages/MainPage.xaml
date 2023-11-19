@@ -21,7 +21,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
-        <Border Grid.Column="1" Grid.Row="1" Margin="0,100,0,100">
+        <Border Grid.Column="1" Grid.Row="1" Margin="0,40,0,50">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="35"/>

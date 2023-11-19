@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using System.Windows;
@@ -29,6 +30,7 @@ namespace Messenger
     {
         public string userID;
         public static bool clicked = false;
+        public static bool isClicked = false;
         MainWindow mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
 
         public ChatPage(string UserID)
@@ -36,6 +38,7 @@ namespace Messenger
             userID = UserID;
             App.userID = UserID;
             InitializeComponent();
+
 
 
         }
@@ -80,8 +83,69 @@ namespace Messenger
 
         private void _searchDown(object sender, MouseButtonEventArgs e)
         {
-            Task.Run(() => App.server.GetUsersAndChatsIDsWithUser.Execute(this)).Wait();
+            
+            if (!isClicked)
+            {
+                bord.Visibility = Visibility.Collapsed;
+                bord2.Visibility = Visibility.Visible;
+                closeSearch.Visibility = Visibility.Visible;
+                Task.Run(() => App.server.GetUsersAndChatsIDsWithUser.Execute(this)).Wait();
+                isClicked = true;
+            }
+            else 
+            {
+                bord.Visibility = Visibility.Collapsed;
+                bord2.Visibility = Visibility.Visible;
+                closeSearch.Visibility = Visibility.Visible;
+            }
+        }
 
+        private void closeSearchClick(object sender, RoutedEventArgs e)
+        {
+            closeSearch.Visibility = Visibility.Collapsed;
+            bord.Visibility = Visibility.Visible;
+            bord2.Visibility = Visibility.Collapsed;
+        }
+
+        public void CreateChat(int ChatID, string ChatName, int UserID)
+        {
+            
+            if (App.server.viewModel.Users.Where(x=>x.ChatID == ChatID.ToString()).Count() > 0)
+            {
+                App.server.ChatID = Convert.ToInt32(ChatID);
+
+                Task.Run(() => App.server.GetBackground.Execute(this)).Wait();
+
+                Task.Run(() => App.server.GetMessages.Execute(this)).Wait();
+
+                var c = App.server.viewModel.Users.Where(x => x.ChatID == ChatID.ToString()).Select(a => a.ChatName);
+
+                MessangerName.Content = c.First();
+                messagesView.Visibility = Visibility.Visible;
+                chatBox.Visibility = Visibility.Visible;
+                stub.Visibility = Visibility.Collapsed;
+                EditChatButton.Visibility = Visibility.Visible;
+
+
+                closeSearch.Visibility = Visibility.Collapsed;
+                bord.Visibility = Visibility.Visible;
+                bord2.Visibility = Visibility.Collapsed;
+
+            }
+            else
+            {
+                App.createChat = new CreateChat(ChatID, ChatName, null, 0, UserID);
+                mainWindow.frameMenu2.Visibility = Visibility.Visible;
+                mainWindow.frameMenu2.Navigate(App.createChat);
+                App.createChat.Focus();
+            }
+
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            App.server.viewModel.SearchUsers(search.Text);
         }
     }
 }

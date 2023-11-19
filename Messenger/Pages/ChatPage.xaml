@@ -34,12 +34,38 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <TextBox Grid.Row="0" Grid.Column="1" PreviewMouseLeftButtonDown="_searchDown" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" Height="25" Width="175"></TextBox>
+                <TextBox x:Name="search" Style="{StaticResource textBoxes}" Grid.Row="0" Grid.Column="1" PreviewMouseLeftButtonDown="_searchDown" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,40,0" Height="25" Width="175" TextChanged="TextBox_TextChanged"></TextBox>
+                <Button Style="{StaticResource chatButtons}" x:Name="closeSearch" HorizontalAlignment="Right" Grid.Column="1" Height="40" Width="40" Content="X" Visibility="Collapsed" Click="closeSearchClick"/>
                 <Button Style="{StaticResource chatButtons}" x:Name="settings" Click="settings_Click" Content="☰"></Button>
             </Grid>
         </Border>
-
+<!--SEARCH LIST-->
         <Frame x:Name="settingsFrame" Grid.Column="0" Grid.Row="1" NavigationUIVisibility="Hidden" Visibility="Collapsed"></Frame>
+        
+        
+        <Border x:Name="bord2" Grid.Row="1" Grid.Column="0" Background="#163148" Visibility="Collapsed">
+            <ListView x:Name="searchList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding searchRes}" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Style="{DynamicResource stackStyle}" Grid.Row="1" Height="50" Width="300" HorizontalAlignment="Stretch" Orientation="Horizontal">
+                                        <Ellipse x:Name="imageCircle" Height="50" Width="50" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Ellipse.Fill>
+                                                <ImageBrush/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Label x:Name="chats" Style="{DynamicResource ResourceKey=labels}" VerticalAlignment="Center" HorizontalAlignment="Stretch" IsHitTestVisible="False" Content="{Binding ChatName}"></Label>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
+<!--USERS LIST-->
         <Border x:Name="bord" Grid.Row="1" Grid.Column="0" Background="#163148" Visibility="Visible">
             <ListView x:Name="usersList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Users}" BorderThickness="0" Grid.Row="1" Background="Transparent" Grid.Column="0">
                 <ListView.View>
@@ -72,7 +98,7 @@
             </ListView>
         </Border>
 
-        <Border Grid.RowSpan="2" Grid.Column="1">
+        <Border Grid.RowSpan="2" Grid.Column="1" Visibility="Visible">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>

@@ -127,10 +127,20 @@ namespace Messenger
                                     
                                 }else if (line == "GetUsersAndChatsIDsWithUser")
                                 {
-                                    viewModel.AddUserSearchList(JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(_reader.ReadLine())) ;
+                                    Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                                    {
+                                        viewModel.AddUserSearchList(JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(_reader.ReadLine()));
+                                    }
+                                    ));
                                 }else if (line == "NewChat")
                                 {
-                                    viewModel.AddChatToList(JsonConvert.DeserializeObject<Dictionary<string, string>>(_reader?.ReadLine()));
+                                    Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                                    {
+                                        viewModel.AddChatToList(JsonConvert.DeserializeObject<Dictionary<string, string>>(_reader?.ReadLine()));
+                                        MessageBox.Show("a");
+                                    }
+                                    ));
+                                    
                                 }else if (line== "DeleteChat")
                                 {
                                     string chatID = _reader?.ReadLine();
@@ -239,22 +249,39 @@ namespace Messenger
                             viewModel.AddChatList(JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(aStr));
                             Application.Current.Dispatcher.BeginInvoke((Action)(() =>
                             {
-                                MainWindow mainWindowSus = Application.Current.MainWindow as MainWindow;
-                                connected = true;
-                                App.chatPage = new ChatPage(usId);
-                                App.chatPage.DataContext = viewModel;
-                                mainWindowSus.frameMenu.Navigate(App.chatPage);
+                                Exit();
+                                App.loginPage = new LoginPage();
+                                App.mainPage.Login.Background = new SolidColorBrush(Color.FromRgb(22, 49, 72));
+                                App.mainPage.Signin.Background = new SolidColorBrush(Color.FromRgb(31, 71, 104));
+                                App.mainPage.frameLogin.Navigate(App.loginPage);
                             }));
                             Listener();
 
                         }
                         else
                         {
-                            MessageBox.Show(result);
-                            //Application.Current.Dispatcher.BeginInvoke((Action)(() =>
-                            //{
-                            //    App.loginPage.ErrorLogin.Visibility = Visibility.Visible;
-                            //}));
+                            Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                            {
+                                if (result == "Пароли не совпадают")
+                                {
+                                    App.authPage.Error1.Visibility = Visibility.Collapsed;
+                                    App.authPage.Error2.Visibility = Visibility.Visible;
+                                    App.authPage.Error3.Visibility = Visibility.Collapsed;
+                                }
+                                else if (result == "Логин не должен быть пустым и содержать пароли")
+                                {
+                                    App.authPage.Error1.Visibility = Visibility.Collapsed;
+                                    App.authPage.Error2.Visibility = Visibility.Collapsed;
+                                    App.authPage.Error3.Visibility = Visibility.Visible;
+                                }
+                                else
+                                {
+                                    App.authPage.Error1.Visibility = Visibility.Visible;
+                                    App.authPage.Error2.Visibility = Visibility.Collapsed;
+                                    App.authPage.Error3.Visibility = Visibility.Collapsed;
+                                }
+                            
+                            }));
                         }
                     });
                 }, () => _client is null || _client?.Connected == false);

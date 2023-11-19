@@ -1,4 +1,4 @@
-﻿<Page x:Class="Messenger.ChatEditing"
+﻿<Page x:Class="Messenger.CreateChat"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,15 +6,16 @@
       xmlns:local="clr-namespace:Messenger"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="700"
-      Title="AccountPage"
+      Title="CreateChat"
       MouseDown="Page_MouseMove">
+
     <Page.Background>
         <SolidColorBrush Color="Black" Opacity="0.3"/>
     </Page.Background>
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -30,19 +31,18 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Image x:Name="imageCircle" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <TextBlock Style="{StaticResource blocks}" Text="dasdas" VerticalAlignment="Center"  HorizontalAlignment="Stretch" TextAlignment="Center"/>
 
             <StackPanel VerticalAlignment="Top" Grid.Row="1">
-                <Button Style="{StaticResource SettingsButton}" Height="60" HorizontalAlignment="Stretch" Click="account_Click" Content="{DynamicResource changeBackground}"/>
                 <Grid>
-                    <Button Grid.Row="1" Style="{StaticResource SettingsButton}" Height="60" Width="300" HorizontalAlignment="Left" Click="_changeNick" Content="{DynamicResource deleteChat}"/>
+                    <Button Grid.Row="1" Style="{StaticResource SettingsButton}" Height="60" Width="300" Click="Create_Chat" HorizontalAlignment="Left" Content="{DynamicResource createChat}"/>
                 </Grid>
                 <Grid>
                     <TextBlock x:Name="ErrorText" Style="{DynamicResource ResourceKey=blocks}" Visibility="Hidden" Text="{DynamicResource ErrorMessage}" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Row="1"/>
                     <TextBlock x:Name="ErrorText2" Style="{DynamicResource ResourceKey=blocks}" Visibility="Hidden" Text="{DynamicResource ErrorMessage2}" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Row="1"/>
                 </Grid>
             </StackPanel>
-            
+
         </Grid>
     </Grid>
 </Page>

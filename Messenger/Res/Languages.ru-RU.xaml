@@ -17,6 +17,10 @@
     <system:String x:Key="ErrorMessage2">Имя не должно быть пустым или содержать пробелы</system:String>
     <system:String x:Key="ErrorLogin">Логин или пароль введены неправильно</system:String>
     <system:String x:Key="changeBackground">💬Сменить фон</system:String>
-    <system:String x:Key="changeChatName">Сменить название чата</system:String>
+    <system:String x:Key="deleteChat">🗑️Удалить чат</system:String>
+    <system:String x:Key="Error1">Пароль должен содержать 6 или более символов, Должен иметь хотя бы одну цифру, Должен содержать английские символы</system:String>
+    <system:String x:Key="Error2">Пароли не совпадают</system:String>
+    <system:String x:Key="Error3">Поле логина не должно быть пустым</system:String>
+    <system:String x:Key="createChat">+ Создать чат</system:String>
 
 </ResourceDictionary>

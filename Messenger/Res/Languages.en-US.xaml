@@ -17,5 +17,9 @@
     <system:String x:Key="ErrorMessage2">The name must not be empty or contain spaces</system:String>
     <system:String x:Key="ErrorLogin">Login or password entered incorrectly</system:String>
     <system:String x:Key="changeBackground">💬Change background</system:String>
-    <system:String x:Key="changeChatName">Change chat name</system:String>
+    <system:String x:Key="deleteChat">🗑️Delete chat</system:String>
+    <system:String x:Key="Error1">Password must contain 6 or more characters, Must have at least one digit, Must contain English characters</system:String>
+    <system:String x:Key="Error2">Password mismatch</system:String>
+    <system:String x:Key="Error3">The login field must not be empty</system:String>
+    <system:String x:Key="createChat">+ Create chat</system:String>
 </ResourceDictionary>

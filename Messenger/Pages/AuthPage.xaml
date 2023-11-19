@@ -10,13 +10,16 @@
       Background="#163148">
 
     <Grid>
-        <Label Style="{DynamicResource labels}" Margin="0,0,40,225" Content="{DynamicResource Login}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Height="40"/>
-        <TextBox Style="{StaticResource ResourceKey=textBoxes}" x:Name="loginText" KeyDown="loginText_KeyDown" Margin="0,0,0,150" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="35"/>
-        <PasswordBox Style="{StaticResource ResourceKey=passwordBoxes}" x:Name="passwordText" KeyDown="passwordText_KeyDown" PasswordChar="•" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="35"/>
-        <Label Style="{DynamicResource labels}" Margin="0,0,40,75" Content="{DynamicResource Password}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Height="40" />
-        <Label Style="{DynamicResource labels}" Margin="0,70,0,0" Content="{DynamicResource ReEnter}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="40" />
-        <PasswordBox Style="{StaticResource ResourceKey=passwordBoxes}" x:Name="passwordConfText" KeyDown="passwordConfText_KeyDown" PasswordChar="•" Margin="0,145,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="35"/>
+        <Label Style="{DynamicResource labels}" Margin="0,0,40,330" Content="{DynamicResource Login}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Height="40"/>
+        <TextBox Style="{StaticResource ResourceKey=textBoxes}" x:Name="loginText" KeyDown="loginText_KeyDown" Margin="0,0,0,255" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="35"/>
+        <PasswordBox Style="{StaticResource ResourceKey=passwordBoxes}" x:Name="passwordText" KeyDown="passwordText_KeyDown" PasswordChar="•" Margin="0,0,0,105" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="35"/>
+        <Label Style="{DynamicResource labels}" Margin="0,0,40,180" Content="{DynamicResource Password}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Height="40" />
+        <Label Style="{DynamicResource labels}" Margin="0,70,0,105" Content="{DynamicResource ReEnter}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="40" />
+        <PasswordBox Style="{StaticResource ResourceKey=passwordBoxes}" x:Name="passwordConfText" KeyDown="passwordConfText_KeyDown" PasswordChar="•" Margin="0,145,0,105" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="35"/>
 
-        <Button Command="{Binding Registration}" Style="{StaticResource ResourceKey=buttons2}" x:Name="authBut" Margin="0,240,0,0" Content="{DynamicResource SignIn}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="authBut_Click" Height="40" Width="180"/>
+        <Button Command="{Binding Registration}" Style="{StaticResource ResourceKey=buttons2}" x:Name="authBut" Margin="0,240,0,105" Content="{DynamicResource SignIn}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="authBut_Click" Height="40" Width="180"/>
+        <TextBlock x:Name="Error1" Style="{StaticResource blocks}" Width="300" HorizontalAlignment="Center" Margin="0,0,0,20" Visibility="Collapsed" VerticalAlignment="Bottom" TextWrapping="Wrap" Text="{DynamicResource Error1}"/>
+        <TextBlock x:Name="Error2" Style="{StaticResource blocks}" Width="300" HorizontalAlignment="Center" Margin="0,0,0,100" Visibility="Collapsed" VerticalAlignment="Bottom" TextAlignment="Center" TextWrapping="Wrap" Text="{DynamicResource Error2}"/>
+        <TextBlock x:Name="Error3" Style="{StaticResource blocks}" Width="300" HorizontalAlignment="Center" Margin="0,0,0,70" Visibility="Collapsed" VerticalAlignment="Bottom" TextWrapping="Wrap" Text="{DynamicResource Error3}"/>
     </Grid>
 </Page>
