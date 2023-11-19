@@ -63,7 +63,7 @@ namespace Messenger
         {
             Task.Run(() =>
             {
-                while (true)
+                while (this.connected)
                 {
                     try
                     {
@@ -107,23 +107,47 @@ namespace Messenger
                                 }else if(line== "BackGround")
                                 {
                                     var aStr = _reader.ReadLine();
-                                    Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                                    if (!String.IsNullOrEmpty(aStr))
                                     {
-                                        byte[] imageBytes;
-                                        BackgroundString = aStr;
-                                        ImageBrush brush = new ImageBrush();
-                                        imageBytes = Convert.FromBase64String(App.server.BackgroundString);
-                                        BitmapImage image2 = new BitmapImage();
-                                        using (MemoryStream memoryStream = new MemoryStream(imageBytes))
+                                        Application.Current.Dispatcher.BeginInvoke((Action)(() =>
                                         {
-                                            image2.BeginInit();
-                                            image2.CacheOption = BitmapCacheOption.OnLoad;
-                                            image2.StreamSource = memoryStream;
-                                            image2.EndInit();
-                                        }
-                                        brush.ImageSource = image2;
-                                        App.chatPage.messagesView.Background = brush;
-                                    }));
+                                            byte[] imageBytes;
+                                            BackgroundString = aStr;
+                                            ImageBrush brush = new ImageBrush();
+                                            imageBytes = Convert.FromBase64String(App.server.BackgroundString);
+                                            BitmapImage image2 = new BitmapImage();
+                                            using (MemoryStream memoryStream = new MemoryStream(imageBytes))
+                                            {
+                                                image2.BeginInit();
+                                                image2.CacheOption = BitmapCacheOption.OnLoad;
+                                                image2.StreamSource = memoryStream;
+                                                image2.EndInit();
+                                            }
+                                            brush.ImageSource = image2;
+                                            App.chatPage.messagesView.Background = brush;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+                                        {
+                                            //byte[] imageBytes;
+                                            //BackgroundString = aStr;
+                                            //ImageBrush brush = new ImageBrush();
+                                            //imageBytes = Convert.FromBase64String(App.server.BackgroundString);
+                                            //BitmapImage image2 = new BitmapImage();
+                                            //using (MemoryStream memoryStream = new MemoryStream(imageBytes))
+                                            //{
+                                            //    image2.BeginInit();
+                                            //    image2.CacheOption = BitmapCacheOption.OnLoad;
+                                            //    image2.StreamSource = memoryStream;
+                                            //    image2.EndInit();
+                                            //}
+                                            //brush.ImageSource = image2;
+                                            App.chatPage.messagesView.Background = null;
+                                        }));
+                                    }
+                                    
                                     
                                 }else if (line == "GetUsersAndChatsIDsWithUser")
                                 {
@@ -137,7 +161,6 @@ namespace Messenger
                                     Application.Current.Dispatcher.BeginInvoke((Action)(() =>
                                     {
                                         viewModel.AddChatToList(JsonConvert.DeserializeObject<Dictionary<string, string>>(_reader?.ReadLine()));
-                                        MessageBox.Show("a");
                                     }
                                     ));
                                     
@@ -249,6 +272,7 @@ namespace Messenger
                             viewModel.AddChatList(JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(aStr));
                             Application.Current.Dispatcher.BeginInvoke((Action)(() =>
                             {
+                                connected = false;
                                 Exit();
                                 App.loginPage = new LoginPage();
                                 App.mainPage.Login.Background = new SolidColorBrush(Color.FromRgb(22, 49, 72));

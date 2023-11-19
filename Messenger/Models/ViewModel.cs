@@ -106,6 +106,7 @@ namespace Messenger.Models
                 ChatName = chat["ChatName"],
                 unrMessages = 0
             });
+            MessageBox.Show(chat["ChatName"]);
         }
         public void AddMessage()
         {
