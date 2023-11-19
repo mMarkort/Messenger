@@ -63,7 +63,7 @@ namespace Messenger
         {
             Task.Run(() =>
             {
-                while (this.connected)
+                while (true)
                 {
                     try
                     {
@@ -455,13 +455,15 @@ namespace Messenger
         }
         public void AddChat(int ChelID, string ChelLogin, string ChatName)
         {
+            string chlius = ChelID.ToString();
             Task.Run(() => 
             {
-                _writer?.WriteLine("AddChat");
-                _writer?.WriteLine(ChatName);
-                _writer?.WriteLine(ChelID);
-                _writer?.WriteLine(ChelLogin);
+                _writer.WriteLine("AddChat");
+                _writer.WriteLine(ChatName);
+                _writer.WriteLine(chlius);
+                _writer.WriteLine(ChelLogin);
             });
+            //MessageBox.Show(JsonConvert.SerializeObject(new { ID = ChelID, Login = ChelLogin, Name = ChatName }));
         }
         public AsyncCommand DeleteChat
         {
