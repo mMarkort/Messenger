@@ -58,6 +58,9 @@ namespace Messenger
             App.chatPage.bord.Visibility = Visibility.Visible;
 
             App.chatPage.closeSearch.Visibility = Visibility.Collapsed;
+
+            App.chatPage.searchList.ItemsSource = App.server.viewModel.searchRes;
+
         }
     }
 }

@@ -169,7 +169,6 @@ namespace Messenger
                                     Application.Current.Dispatcher.BeginInvoke((Action)(() =>
                                     {
                                         string chatID = _reader?.ReadLine();
-                                        MessageBox.Show("aa");
                                         viewModel.RemoveChat(chatID);
                                         
                                     }

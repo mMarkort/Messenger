@@ -1,4 +1,5 @@
 ﻿using Messenger;
+using Messenger.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,8 +35,6 @@ namespace Messenger
             App.server.Nick = loginText.Text;
             App.server.Password = passwordText.Password;
             App.server.ConnectCommand.ExecuteAsync(this);
-
-
 
         }
 

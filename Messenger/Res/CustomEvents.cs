@@ -18,17 +18,20 @@ namespace Messenger.Res
     public partial class CustomEvents : ResourceDictionary
     {
         public ListViewItem item2;
+        public ListViewItem item;
         public static byte[] imageBytes;
         private void ListViewItem_LeftMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var item = sender as ListViewItem;
-            
-            
-            if (item != null && item.IsSelected && item != item2)
+            item2 = item;
+            item = sender as ListViewItem;
+            dynamic a = App.chatPage.usersList.SelectedItem;
+
+            if (item != null && item.IsSelected)
             {
+
                 try
                 {
-                    dynamic a = App.chatPage.usersList.SelectedItem;
+                    
 
                     App.server.ChatID = Convert.ToInt32(a.ChatID);
 
@@ -37,22 +40,16 @@ namespace Messenger.Res
                     Task.Run(() => App.server.GetMessages.Execute(this)).Wait();
                     
                     item.Background = new SolidColorBrush(Color.FromRgb(34, 76, 112));
+                    if (item2 != null)
+                    {
+                        item2.Background = new SolidColorBrush(Color.FromRgb(22, 49, 72));
+                    }
+
                     App.chatPage.MessangerName.Content = a.ChatName.ToString();
                     App.chatPage.messagesView.Visibility = Visibility.Visible;
                     App.chatPage.chatBox.Visibility = Visibility.Visible;
                     App.chatPage.stub.Visibility = Visibility.Collapsed;
                     App.chatPage.EditChatButton.Visibility = Visibility.Visible;
-                    //background string
-
-                    //if (!String.IsNullOrEmpty(App.server.BackgroundString))
-                    //{
-                    
-                        
-                    //}
-                    //else
-                    //{
-                    //    App.chatPage.messagesView.Background = null;
-                    //}
 
                 }
                 catch 
@@ -60,7 +57,7 @@ namespace Messenger.Res
                     try 
                     {
                         dynamic b = App.chatPage.searchList.SelectedItem;
-                        App.chatPage.CreateChat(b.ChatID, b.ChatName, b.UserID);
+                        App.chatPage.CreateChat(b.ChatID, b.ChatName, b.UserID, a, item, item2);
                     }
                     catch 
                     {

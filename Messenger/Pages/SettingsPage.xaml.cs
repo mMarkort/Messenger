@@ -56,7 +56,9 @@ namespace Messenger
         private void logout_Click(object sender, RoutedEventArgs e)
         {
             App.server.Exit();
+            App.chatPage.searchList.ItemsSource = App.server.viewModel.searchRes;
             App.mainPage = new MainPage();
+            App.clicked = false;
             mainWindow.frameMenu.Navigate(new MainPage());
         }
 

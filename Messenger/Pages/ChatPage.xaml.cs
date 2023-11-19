@@ -29,8 +29,6 @@ namespace Messenger
     public partial class ChatPage : Page
     {
         public string userID;
-        public static bool clicked = false;
-        public static bool isClicked = false;
         MainWindow mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
 
         public ChatPage(string UserID)
@@ -49,18 +47,18 @@ namespace Messenger
         {
             App.settingsPage = new SettingsPage();
 
-            if (!clicked)
+            if (!App.clicked)
             {
                 settingsFrame.Visibility = Visibility.Visible;
                 bord.Visibility = Visibility.Collapsed;
                 settingsFrame.Navigate(new SettingsPage());
-                clicked = true;
+                App.clicked = true;
             }
-            else if (clicked)
+            else if (App.clicked)
             {
                 settingsFrame.Visibility = Visibility.Collapsed;
                 bord.Visibility = Visibility.Visible;
-                clicked = false;
+                App.clicked = false;
             }
 
         }
@@ -83,21 +81,11 @@ namespace Messenger
 
         private void _searchDown(object sender, MouseButtonEventArgs e)
         {
-            
-            if (!isClicked)
-            {
-                bord.Visibility = Visibility.Collapsed;
-                bord2.Visibility = Visibility.Visible;
-                closeSearch.Visibility = Visibility.Visible;
-                Task.Run(() => App.server.GetUsersAndChatsIDsWithUser.Execute(this)).Wait();
-                isClicked = true;
-            }
-            else 
-            {
-                bord.Visibility = Visibility.Collapsed;
-                bord2.Visibility = Visibility.Visible;
-                closeSearch.Visibility = Visibility.Visible;
-            }
+            App.server.viewModel.searchRes.Clear();
+            Task.Run(() => App.server.GetUsersAndChatsIDsWithUser.Execute(this)).Wait();
+            bord.Visibility = Visibility.Collapsed;
+            bord2.Visibility = Visibility.Visible;
+            closeSearch.Visibility = Visibility.Visible;
         }
 
         private void closeSearchClick(object sender, RoutedEventArgs e)
@@ -105,9 +93,10 @@ namespace Messenger
             closeSearch.Visibility = Visibility.Collapsed;
             bord.Visibility = Visibility.Visible;
             bord2.Visibility = Visibility.Collapsed;
+            search.Text = "";
         }
 
-        public void CreateChat(int ChatID, string ChatName, int UserID)
+        public void CreateChat(int ChatID, string ChatName, int UserID, dynamic a, ListViewItem item1, ListViewItem item2)
         {
             
             if (App.server.viewModel.Users.Where(x=>x.ChatID == ChatID.ToString()).Count() > 0)
@@ -117,6 +106,12 @@ namespace Messenger
                 Task.Run(() => App.server.GetBackground.Execute(this)).Wait();
 
                 Task.Run(() => App.server.GetMessages.Execute(this)).Wait();
+
+                item1.Background = new SolidColorBrush(Color.FromRgb(34, 76, 112));
+                if (item2 != null)
+                {
+                    item2.Background = new SolidColorBrush(Color.FromRgb(22, 49, 72));
+                }
 
                 var c = App.server.viewModel.Users.Where(x => x.ChatID == ChatID.ToString()).Select(a => a.ChatName);
 

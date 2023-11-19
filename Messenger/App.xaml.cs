@@ -28,6 +28,7 @@ namespace Messenger
         public static string selectedFilePath;
         public static int languageSelect;
         public static string userID;
+        public static bool clicked = false;
 
         public static DataTable usersTable;
 

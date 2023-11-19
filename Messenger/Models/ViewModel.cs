@@ -109,12 +109,6 @@ namespace Messenger.Models
                 unrMessages = 0
             });
 
-            EditedUsers.Add(new UserListModel
-            {
-                ChatID = chat["chatId"],
-                ChatName = chat["ChatName"],
-                unrMessages = 0
-            });
         }
         public void AddMessage()
         {
@@ -171,8 +165,12 @@ namespace Messenger.Models
         {
             var a = Users.First(x=>x.ChatID==ChatID);
             Users.Remove(a);
-            EditedUsers = Users.Select(a=>a).ToObservableCollection();
-            App.chatPage.usersList.ItemsSource = EditedUsers;
+            App.chatPage.usersList.ItemsSource = Users;
+            App.chatPage.MessangerName.Content = "";
+            App.chatPage.messagesView.Visibility = Visibility.Collapsed;
+            App.chatPage.chatBox.Visibility = Visibility.Collapsed;
+            App.chatPage.stub.Visibility = Visibility.Visible;
+            App.chatPage.EditChatButton.Visibility = Visibility.Collapsed;
         }
 
         public void SearchUsers(string SearchText)
