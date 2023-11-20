@@ -74,7 +74,7 @@ namespace Messenger.Res
             {
                 //App.Users id = (App.Users)App.chatPage.usersList.SelectedItem;
                 //App.users.Remove(id);
-                MessageBox.Show("aaa");
+                //MessageBox.Show("aaa");
             }
         }
     }

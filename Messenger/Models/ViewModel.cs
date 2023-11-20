@@ -175,8 +175,8 @@ namespace Messenger.Models
 
         public void SearchUsers(string SearchText)
         {
-            searchResFilter = searchRes.Where(x => x.ChatName.Contains(SearchText)).Select(a=>a).ToObservableCollection();
-            App.chatPage.searchList.ItemsSource = searchResFilter;
+
+            App.chatPage.searchList.ItemsSource = searchRes.Where(x => x.ChatName.Contains(SearchText)).Select(a => a).ToObservableCollection();
         }
 
     }
