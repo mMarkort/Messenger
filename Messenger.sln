@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messenger", "Messenger\Messenger.csproj", "{B6AB699B-1DFE-4309-A03C-27384DF8E79C}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AbobaChatSetup", "AbobaChatSetyp\AbobaChatSetyp.vdproj", "{5BA6B880-6C6D-4ADD-B098-79E790C908C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{B6AB699B-1DFE-4309-A03C-27384DF8E79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6AB699B-1DFE-4309-A03C-27384DF8E79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6AB699B-1DFE-4309-A03C-27384DF8E79C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BA6B880-6C6D-4ADD-B098-79E790C908C2}.Debug|Any CPU.ActiveCfg = Debug
+		{5BA6B880-6C6D-4ADD-B098-79E790C908C2}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

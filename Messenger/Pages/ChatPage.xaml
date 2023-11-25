@@ -80,15 +80,6 @@
                                             </Ellipse.Fill>
                                         </Ellipse>
                                         <Label x:Name="chats" Style="{DynamicResource ResourceKey=labels}" VerticalAlignment="Center" HorizontalAlignment="Stretch" IsHitTestVisible="False" Content="{Binding ChatName}"></Label>
-                                        <Grid Width="30" Style="{DynamicResource chatGrid}" x:Name="unrMessGrid" Margin="100,0,0,0">
-                                            <Ellipse x:Name="unrMessCircle" Height="30" Width="30" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                                <Ellipse.Fill>
-                                                    <SolidColorBrush Color="#2378a8"/>
-                                                </Ellipse.Fill>
-                                            </Ellipse>
-                                            <TextBlock x:Name="unrMess" Style="{DynamicResource blocks2}" Text="{Binding unrMessages}" HorizontalAlignment="Center" TextAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0">
-                                            </TextBlock>
-                                        </Grid>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
